@@ -113,9 +113,9 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
           <div className="centered">
             <h1 className="large-header">{category && category.name}</h1>
             <FunctionalSearch afterSearch={setResults} category_id={cat_id} />
-            <h4>Sort By</h4>
+            <h4>Price</h4>
             <select onChange={ (e) => setSortType(e.target.value) }>
-              <option value='default' defaultValue> -- Default View -- </option>
+              <option value='default' defaultValue> -- Sort by -- </option>
               <option value='highPrice'>Price - Highest to Lowest</option>
               <option value='lowPrice'>Price - Lowest to Highest</option>
             </select>

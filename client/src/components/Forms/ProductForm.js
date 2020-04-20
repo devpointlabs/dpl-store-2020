@@ -174,8 +174,7 @@ class ProductForm extends Component {
                 {...this.props}
                 setMainImage={this.setMainImage}
               />
-              <br/>
-              <AltImageForm {...this.props} />
+              <AltImageForm {...this.props} style={{paddingTop: "10px"}}/>
             </div>
           </Form.Group>
           <Form.Button type="submit" style={styles.submitBtn}>Submit</Form.Button>
@@ -201,7 +200,7 @@ const styles = {
     color: 'white',
     backgroundColor: '#4901DB',
     borderRadius: '30px',
-    width:'150px',
+    width:'100%',
     padding:'2%',
     cursor:'pointer'
   },
@@ -209,7 +208,7 @@ const styles = {
     color: '#4901DB',
     backgroundColor:'lightgrey',
     borderRadius: '30px',
-    width:'150px',
+    width:'100%',
     padding:'2%',
     cursor:'pointer'
   },

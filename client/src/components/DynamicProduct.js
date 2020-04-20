@@ -14,10 +14,6 @@ const DynamicProduct = ({category_id, product_id, match, auth:{addItemToCart}}) 
   const [category, setCategory] = useState('')
   const [items] = useState([
     {
-      label: "",
-      value: ""
-    },
-    {
       label: "X-Small",
       value: "X-Small"
     },

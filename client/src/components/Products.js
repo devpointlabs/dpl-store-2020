@@ -75,9 +75,9 @@ export default class Products extends Component {
           : this.renderCategories()}
           </div>
           <br/>
-        <div align="center">
+        {/* <div align="center">
           <button class="ui button" style={style.button}>See More</button>
-        </div>
+        </div> */}
         <br />
       </>
     );

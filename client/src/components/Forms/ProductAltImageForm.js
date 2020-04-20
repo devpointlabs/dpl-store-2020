@@ -36,6 +36,7 @@ class AltImageForm extends Component {
   newAltImageFormat = () => {
     return (
       <div key="new _alt_Image">
+         <h2>Alt Images</h2>
         <Dropzone onDrop={file => this.onDrop(file)} multiple={false}>
           {({ getRootProps, getInputProps, isDragActive }) => {
             return (
