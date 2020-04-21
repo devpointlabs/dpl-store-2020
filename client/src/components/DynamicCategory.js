@@ -62,7 +62,7 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
     <div style={style.productContainer}>
       {items.map((product) => (
         <div key={product.id} style={style.product}>
-          <Link to={`/categories/${cat_id}/products/${product.id}`}>
+          <Link to={`/categories/${cat_id}/products/${product.id}`} >
             <div style={{ ...style.photoHolder, height: '275px' }}>
               <div style={style.crop}>
                 <Image style={style.photo} src={`${product.main_image}`} />
@@ -72,7 +72,7 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
 
           <div style={style.informationContainer}>
             <div>
-              <Link to={`/categories/${cat_id}/products/${product.id}`}>
+              <Link to={`/categories/${cat_id}/products/${product.id}`} style={{color:'black'}}>
                 <h3 style={{ margin: "5px", display: "inline" }}>
                   {"$" + product.price}
                 </h3>
