@@ -45,13 +45,27 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
     <div style={style.resultsContainer}>
     {results.map((result) => (
         <div key={result.id}>
+           <div style={{ ...style.photoHolder }}>
+            <div style={style.crop}>
           <Link to={`/categories/${result.category_id}/products/${result.id}`}>
             <Image src={result.main_image} alt={result.title} size="small"/>
-            <Card.Header >{result.title}</Card.Header>
-            <Card.Meta>${result.price}</Card.Meta>
-          </Link>
+            </Link>
+            </div>
+        </div>
+        <div style={style.informationContainer}>
+            <div>
+            <Link to={`/categories/${result.category_id}/products/${result.id}`}>
+            <h4 style={{ margin: "5px", }}>
+                  {"$" + result.price}
+                </h4>
+                <h5 style={{ margin: "5px",  }}>
+                  {result.title}
+                </h5>
+            </Link>
           <br />
         </div> 
+       </div>
+       </div>
     ))}
   </div> 
   </div>
@@ -181,8 +195,8 @@ const style = {
   },
   resultsContainer: {
     display: "flex",
-    justifyContent: "center",
     flexWrap: "wrap",
+    alignItems: 'left',
     marginTop: "2%",
     margin: "5%",
   },
