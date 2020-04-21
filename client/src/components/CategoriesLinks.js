@@ -60,15 +60,16 @@ const styles = {
   GridItem:{
     // padding:"40px",
     width: "25%",
-    height: "25%",
+    height: "20%",
     marginTop:"25px",
     paddingTop: "30px"
   },
   Text:{
-    paddingTop: "10%",
+    paddingTop: "15%",
     // textAlign: "left",
-    color: "grey",
-    fontSize: "30px"
+    color: "Black",
+    fontSize: "20px",
+    textAlign: "center"
   }
 };
 
