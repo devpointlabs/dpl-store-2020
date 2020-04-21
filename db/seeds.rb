@@ -37,7 +37,7 @@ hat = Product.create(
     description: Faker::Movies::HarryPotter.quote,
     price: Faker::Number.decimal(l_digits: 2),
     has_size: true,
-    sizes: { Xsmall: 5, Small: 5, Medium: 5, Large: 5, XLarge: 5, XXL: 5 },
+    sizes: {noSize: 20 },
     main_image: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587486257/RFBMX0hhdC5qcGc=/preview',
     featured: 'true'
 )
@@ -109,7 +109,7 @@ glasses = Product.create(
     title: 'Glasses',
     description: Faker::Movies::HarryPotter.quote,
     price: Faker::Number.decimal(l_digits: 2),
-    has_size: true,
+    has_size: false,
     sizes: {noSize: 20 },
     main_image: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587486943/U3VuZ2xhc3Nlcy5qcGc=/preview',
     featured: 'true'
@@ -124,7 +124,7 @@ Product.create(
     title: 'Koozie',
     description: Faker::Movies::HarryPotter.quote,
     price: Faker::Number.decimal(l_digits: 2),
-    has_size: true,
+    has_size: false,
     sizes: {noSize: 20 },
     main_image: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587486977/RFBMX2tvb3ppZS5qcGc=/preview',
     featured: 'false'
@@ -135,7 +135,7 @@ Product.create(
     title: 'Thin Sticker',
     description: Faker::Movies::HarryPotter.quote,
     price: Faker::Number.decimal(l_digits: 2),
-    has_size: true,
+    has_size: false,
     sizes: {noSize: 20 },
     main_image: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587487000/UDEwNDkwNjQuanBlZw==/preview',
     featured: 'false'
@@ -146,7 +146,7 @@ Product.create(
     title: 'Small Sticker',
     description: Faker::Movies::HarryPotter.quote,
     price: Faker::Number.decimal(l_digits: 2),
-    has_size: true,
+    has_size: false,
     sizes: {noSize: 20 },
     main_image: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587487027/UDEwNDkwNjUuanBlZw==/preview',
     featured: 'false'
@@ -157,7 +157,7 @@ Product.create(
     title: 'Medium Sticker',
     description: Faker::Movies::HarryPotter.quote,
     price: Faker::Number.decimal(l_digits: 2),
-    has_size: true,
+    has_size: false,
     sizes: {noSize: 20 },
     main_image: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587487052/UDEwNDkwNjguanBlZw==/preview',
     featured: 'false'

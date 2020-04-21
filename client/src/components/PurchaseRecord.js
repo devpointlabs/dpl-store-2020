@@ -1,6 +1,6 @@
 import React from 'react';
 import PurchaseRecordForm from './Forms/PurchaseRecordForm';
-import { Button, Header } from 'semantic-ui-react';
+import { Button, Header, Dimmer, Loader } from 'semantic-ui-react';
 import { getAllCartItems } from '../modules/CartFunctions';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
@@ -21,6 +21,7 @@ class PurchaseRecord extends React.Component {
     validEmail: false,
     total: 0,
     showForm: true,
+    loading: false
   }
 
   handleChange = (e, { name, value }) => {
@@ -33,6 +34,7 @@ class PurchaseRecord extends React.Component {
 
   handleSubmit = (e) => {
     if (this.state.validEmail === true) {
+      this.setState({loading:true})
       let cart = getAllCartItems()
       var name = `${this.state.first_name}${this.state.last_name}`
       var products = []
@@ -45,7 +47,7 @@ class PurchaseRecord extends React.Component {
       })
 
       axios.get(`/api/contact?name=${name}&email=${email_address}&subject=DevStore Receipt&total=${total}&products=${JSON.stringify(products)}`)
-        .then(res => { this.setState({ showForm: false }) })
+        .then(res => { this.setState({ showForm: false, loading:false }) })
         .catch(e => console.log(e))
 
     }
@@ -120,7 +122,7 @@ class PurchaseRecord extends React.Component {
   }
 
   render() {
-    const { email_address, first_name, last_name, address_one, address_two, city, state, zip_code, showForm } = this.state
+    const { email_address, first_name, last_name, address_one, address_two, city, state, zip_code, showForm , loading} = this.state
     if (this.state.total === 0) { this.addTotal() }
 
     return (
@@ -146,6 +148,10 @@ class PurchaseRecord extends React.Component {
                 zip_code={zip_code}
               />
               <div>
+                {loading ? 
+                <Dimmer active blurring>
+                  <Loader size='huge'>Submitting Your Order...</Loader>
+                </Dimmer>: <></>}
               </div>
             </div>
             <div id='alert' style={{ display: 'none' }}>{this.state.alertMessage} </div>
