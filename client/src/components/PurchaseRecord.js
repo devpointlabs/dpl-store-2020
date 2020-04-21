@@ -38,7 +38,7 @@ class PurchaseRecord extends React.Component {
       let cart = getAllCartItems()
       var name = `${this.state.first_name}${this.state.last_name}`
       var products = []
-      cart.forEach(product => products.push({ title: 'Shirt', size: 'Small' }))
+      cart.forEach(product => products.push({ title: product.object.title, size: product.size, price:product.object.price }))
       const { email_address, total } = this.state
       axios.post('/api/purchase_records', (this.state)).then(res => {
         this.createPurchaseProducts(res.data.id)

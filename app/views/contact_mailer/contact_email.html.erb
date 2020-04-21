@@ -5,16 +5,21 @@
    <link href="https://fonts.googleapis.com/css?family=Audiowide&display=swap" rel="stylesheet">
  </head>
  <body style="height:100vh;background:#4901DB;color:white;padding:50px;">
-   <h1>DevPoint Store</h1>
-   <h3>Subject: <%= @subject %></h3>
-   <br />
-   <hr />
-   <br />
-   <span>Thank you for your purchase <%= @name %>!</span>
+   <h1 style='text-align:center; color:white'>Thank you for your purchase <%= @name %>!</h1>
 
-   <p>Your total was <%= @total %></p>
+    <br />
+   <h2 style='color:white'>Your Items</h2>
+  <br/>
+  <hr/>
+  <br/>
    <% @products.each do |product| %>
-    <p> <%= product['size'] %> </p>
+    <h2  style=' display:inline-block;color:white'> <%= product['title'] %>  </h2>
+    <h2 style='text-align:right; display:inline-block;color:white''> =>  $<%= product['price'] %> </h2>
+    <h3 style='margin-top: 0;color:white' ><%= product['size'] %> </h3>
    <% end %>
+   <br/>
+  <hr/>
+  <br/>
+   <h1 style='margin-top: 0;color:white' >Your total was <%= @total %></h1>
  </body>
 </html>
