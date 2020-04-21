@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import BlueHeader from "../images/BlueHeader2.svg";
 import FunctionalSearch from "./SharedComponents/FunctionalSearch";
 import Products from "./Products";
-
+import FeaturedCard from './FeaturedCard'
 
 const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
   const [items, setItems] = useState([]);
@@ -57,35 +57,13 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
   </div>
   );
 
+
+
   const renderItems = () => (
     <div style={style.productContainer}>
       {items.map((product) => (
-        <div key={product.id}>
-          <div style={{ ...style.photoHolder }}>
-            <div style={style.crop}>
-              <Image
-                src={product.main_image}
-                as={Link}
-                width="250px"
-                to={{
-                  pathname: `/categories/${cat_id}/products/${product.id}`,
-                  state: { ...product },
-                }}
-              />
-            </div>
-          </div>
-          <div style={style.informationContainer}>
-            <div>
-              <Link to={`/categories/${cat_id}/products/${product.id}`}>
-                <h3 style={{ margin: "5px", display: "inline" }}>
-                  {"$" + product.price}
-                </h3>
-                <h5 style={{ margin: "5px", display: "inline" }}>
-                  {product.title}
-                </h5>
-              </Link>
-            </div>
-          </div>
+         <div style={style.product}>
+        <FeaturedCard pictureHeight={'270px'} product={product} />
         </div>
       ))}
     </div>
@@ -139,21 +117,6 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
 };
 
 const style = {
-  crop: {
-    height: "100%",
-    overflow: "hidden",
-    position: "relative",
-  },
-  photoHolder: {
-    background: "#fff",
-    display: "inline-block",
-    verticalAlign: "top",
-    marginRight: ".5em",
-    marginBottom: ".3em",
-    borderRadius: "15px",
-    overflow: "hidden",
-    boxShadow: "0px 3px 10px #cccccc",
-  },
   informationContainer: {
     display: "flex",
     justifyContent: "space-between",
@@ -170,10 +133,9 @@ const style = {
   },
   productContainer: {
     display: "flex",
-    alignItems: "stretch",
-    marginLeft: "100px",
     flexWrap: "wrap",
     marginBottom: "5%",
+    width:'100%'
   },
   container: {
     margin: "2% 11%",
@@ -186,6 +148,10 @@ const style = {
     marginTop: "2%",
     margin: "5%",
   },
+  product: {
+    width: "28%",
+    margin: "1% 2%"
+  }
 };
 
 export default DynamicCategory;
