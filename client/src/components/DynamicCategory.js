@@ -6,6 +6,7 @@ import BlueHeader from "../images/BlueHeader2.svg";
 import FunctionalSearch from "./SharedComponents/FunctionalSearch";
 import Products from "./Products";
 import Arrow from "../images/LineArrowDown.svg";
+import styled from 'styled-components';
 
 const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
   const [items, setItems] = useState([]);
@@ -40,11 +41,11 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
   },[cat_id]);
 
   const renderResults = () => (
-    <div style={style.container}>
-    <h2 >Search Results</h2>
+    <>
+    <h2 style={{marginLeft: "120px"}}>Search Results</h2>
     <div style={style.resultsContainer}>
     {results.map((result) => (
-        <div key={result.id}>
+        <div key={result.id} >
            <div style={{ ...style.photoHolder }}>
             <div style={style.crop}>
           <Link to={`/categories/${result.category_id}/products/${result.id}`}>
@@ -53,22 +54,22 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
             </div>
         </div>
         <div style={style.informationContainer}>
-            <div>
             <Link to={`/categories/${result.category_id}/products/${result.id}`}>
+            <Truncated>
             <h4 style={{ margin: "5px", }}>
                   {"$" + result.price}
                 </h4>
                 <h5 style={{ margin: "5px",  }}>
                   {result.title}
                 </h5>
+                </Truncated>
             </Link>
-          <br />
+
         </div> 
        </div>
-       </div>
     ))}
-  </div> 
-  </div>
+     </div>
+     </>
   );
 
 
@@ -207,9 +208,10 @@ const style = {
   resultsContainer: {
     display: "flex",
     flexWrap: "wrap",
-    alignItems: 'left',
-    marginTop: "2%",
-    margin: "5%",
+    marginLeft: "120px",
+    marginTop: "5%",
+    marginBottom: "5%",
+    justifyContent: "flex-start",
   },
   sort: {
     backgroundColor: "#4901DB",
@@ -234,7 +236,20 @@ const style = {
   product: {
     width: "275px",
     margin: "1% 2%"
+  },
+  truncate: {
+    width: "100px",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
   }
 };
+
+const Truncated = styled.div `
+  width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
 
 export default DynamicCategory;
