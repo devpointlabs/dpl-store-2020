@@ -7,14 +7,13 @@ import FunctionalSearch from "./SharedComponents/FunctionalSearch";
 import Products from "./Products";
 import Arrow from "../images/LineArrowDown.svg";
 
-
 const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
   const [items, setItems] = useState([]);
   const [category, setCategory] = useState(null);
   const [results, setResults] = useState([]);
   const [sortType, setSortType] = useState('')
   const cat_id = category_id || match.params.category_id;
-  
+
   // gets products on initial render
   useEffect(() => {
     axios
@@ -72,23 +71,20 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
   </div>
   );
 
+
+
   const renderItems = () => (
     <div style={style.productContainer}>
       {items.map((product) => (
-        <div key={product.id}>
-          <div style={{ ...style.photoHolder }}>
-            <div style={style.crop}>
-              <Image
-                src={product.main_image}
-                as={Link}
-                width="250px"
-                to={{
-                  pathname: `/categories/${cat_id}/products/${product.id}`,
-                  state: { ...product },
-                }}
-              />
+        <div key={product.id} style={style.product}>
+          <Link to={`/categories/${cat_id}/products/${product.id}`}>
+            <div style={{ ...style.photoHolder, height: '275px' }}>
+              <div style={style.crop}>
+                <Image style={style.photo} src={`${product.main_image}`} />
+              </div>
             </div>
-          </div>
+          </Link>
+
           <div style={style.informationContainer}>
             <div>
               <Link to={`/categories/${cat_id}/products/${product.id}`}>
@@ -102,19 +98,20 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
             </div>
           </div>
         </div>
-      ))}
-    </div>
+      ))
+      }
+    </div >
   );
 
   const sortItems = type => {
-    if(type == 'highPrice'){
-      const sorted = [...items].sort( (a,b) => a.price > b.price ? -1 : 1);
+    if (type == 'highPrice') {
+      const sorted = [...items].sort((a, b) => a.price > b.price ? -1 : 1);
       setItems(sorted);
-    } else if (type == 'lowPrice'){
-      const sorted = [...items].sort( (a,b) => a.price > b.price ? 1 : -1);
+    } else if (type == 'lowPrice') {
+      const sorted = [...items].sort((a, b) => a.price > b.price ? 1 : -1);
       setItems(sorted);
     } else {
-      const sorted = [...items].sort( (a,b) => {
+      const sorted = [...items].sort((a, b) => {
         a = new Date(a.created_at);
         b = new Date(b.created_at);
         return a > b ? 1 : -1;
@@ -143,10 +140,10 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
         </div>
 
         <div style={style.container}>
-          
-        { results.length > 0 && renderResults() }
-        
-        {renderItems()}
+
+          {results.length > 0 && renderResults()}
+
+          {renderItems()}
         </div>
         <br />
       </>
@@ -155,20 +152,32 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
 };
 
 const style = {
+  photo: {
+    display: "block",
+    minWidth: "100%",
+    minHeight: "100%",
+    margin: " auto",
+    position: "absolute",
+    top: "-100%",
+    right: "-100%",
+    bottom: "-100%",
+    left: "-100%"
+  },
   crop: {
     height: "100%",
     overflow: "hidden",
-    position: "relative",
+    position: "relative"
   },
   photoHolder: {
     background: "#fff",
     display: "inline-block",
     verticalAlign: "top",
+    width: "100%",
     marginRight: ".5em",
     marginBottom: ".3em",
-    borderRadius: "15px",
+    borderRadius: "20px",
     overflow: "hidden",
-    boxShadow: "0px 3px 10px #cccccc",
+    boxShadow: "0px 3px 10px #cccccc"
   },
   informationContainer: {
     display: "flex",
@@ -186,10 +195,10 @@ const style = {
   },
   productContainer: {
     display: "flex",
-    alignItems: "stretch",
     marginLeft: "100px",
     flexWrap: "wrap",
     marginBottom: "5%",
+    width: '100%'
   },
   container: {
     margin: "2% 11%",
@@ -222,6 +231,10 @@ const style = {
     left: "93px",
     top: "205px",
   },
+  product: {
+    width: "275px",
+    margin: "1% 2%"
+  }
 };
 
 export default DynamicCategory;
