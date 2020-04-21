@@ -56,7 +56,7 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
     </div>
   );
 
-  
+
 
   const renderItems = () => (
     <div style={style.productContainer}>
@@ -196,7 +196,7 @@ const style = {
     margin: "5%",
   },
   product: {
-    width: "28%",
+    width: "275px",
     margin: "1% 2%"
   }
 };
