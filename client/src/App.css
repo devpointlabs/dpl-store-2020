@@ -141,3 +141,17 @@
   text-indent: 1px;
   text-overflow: '';
 }
+
+select option[value='default'] {
+  background: #FFFFFF;
+}
+
+select option[value='highPrice'] {
+  background: #FFFFFF;
+  width: 100px;
+}
+
+select option[value="lowPrice"] {
+  background: #FFFFFF;
+  width: 100px;
+}
