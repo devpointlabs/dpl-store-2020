@@ -6,14 +6,13 @@ import BlueHeader from "../images/BlueHeader2.svg";
 import FunctionalSearch from "./SharedComponents/FunctionalSearch";
 import Products from "./Products";
 
-
 const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
   const [items, setItems] = useState([]);
   const [category, setCategory] = useState(null);
   const [results, setResults] = useState([]);
   const [sortType, setSortType] = useState('')
   const cat_id = category_id || match.params.category_id;
-  
+
   // gets products on initial render
   useEffect(() => {
     axios
@@ -41,39 +40,36 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
 
   const renderResults = () => (
     <div style={style.container}>
-    <h2 >Search Results</h2>
-    <div style={style.resultsContainer}>
-    {results.map((result) => (
-        <div key={result.id}>
-          <Link to={`/categories/${result.category_id}/products/${result.id}`}>
-            <Image src={result.main_image} alt={result.title} size="small"/>
-            <Card.Header >{result.title}</Card.Header>
-            <Card.Meta>${result.price}</Card.Meta>
-          </Link>
-          <br />
-        </div> 
-    ))}
-  </div> 
-  </div>
+      <h2 >Search Results</h2>
+      <div style={style.resultsContainer}>
+        {results.map((result) => (
+          <div key={result.id}>
+            <Link to={`/categories/${result.category_id}/products/${result.id}`}>
+              <Image src={result.main_image} alt={result.title} size="small" />
+              <Card.Header >{result.title}</Card.Header>
+              <Card.Meta>${result.price}</Card.Meta>
+            </Link>
+            <br />
+          </div>
+        ))}
+      </div>
+    </div>
   );
+
+
 
   const renderItems = () => (
     <div style={style.productContainer}>
       {items.map((product) => (
-        <div key={product.id}>
-          <div style={{ ...style.photoHolder }}>
-            <div style={style.crop}>
-              <Image
-                src={product.main_image}
-                as={Link}
-                width="250px"
-                to={{
-                  pathname: `/categories/${cat_id}/products/${product.id}`,
-                  state: { ...product },
-                }}
-              />
+        <div key={product.id} style={style.product}>
+          <Link to={`/categories/${cat_id}/products/${product.id}`}>
+            <div style={{ ...style.photoHolder, height: '275px' }}>
+              <div style={style.crop}>
+                <Image style={style.photo} src={`${product.main_image}`} />
+              </div>
             </div>
-          </div>
+          </Link>
+
           <div style={style.informationContainer}>
             <div>
               <Link to={`/categories/${cat_id}/products/${product.id}`}>
@@ -87,19 +83,20 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
             </div>
           </div>
         </div>
-      ))}
-    </div>
+      ))
+      }
+    </div >
   );
 
   const sortItems = type => {
-    if(type == 'highPrice'){
-      const sorted = [...items].sort( (a,b) => a.price > b.price ? -1 : 1);
+    if (type == 'highPrice') {
+      const sorted = [...items].sort((a, b) => a.price > b.price ? -1 : 1);
       setItems(sorted);
-    } else if (type == 'lowPrice'){
-      const sorted = [...items].sort( (a,b) => a.price > b.price ? 1 : -1);
+    } else if (type == 'lowPrice') {
+      const sorted = [...items].sort((a, b) => a.price > b.price ? 1 : -1);
       setItems(sorted);
     } else {
-      const sorted = [...items].sort( (a,b) => {
+      const sorted = [...items].sort((a, b) => {
         a = new Date(a.created_at);
         b = new Date(b.created_at);
         return a > b ? 1 : -1;
@@ -118,7 +115,7 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
             <h1 className="large-header">{category && category.name}</h1>
             <FunctionalSearch afterSearch={setResults} category_id={cat_id} />
             <h4>Sort By</h4>
-            <select onChange={ (e) => setSortType(e.target.value) }>
+            <select onChange={(e) => setSortType(e.target.value)}>
               <option value='default' defaultValue> -- Default View -- </option>
               <option value='highPrice'>Price - Highest to Lowest</option>
               <option value='lowPrice'>Price - Lowest to Highest</option>
@@ -127,10 +124,10 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
         </div>
 
         <div style={style.container}>
-          
-        { results.length > 0 && renderResults() }
-        
-        {renderItems()}
+
+          {results.length > 0 && renderResults()}
+
+          {renderItems()}
         </div>
         <br />
       </>
@@ -139,20 +136,32 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
 };
 
 const style = {
+  photo: {
+    display: "block",
+    minWidth: "100%",
+    minHeight: "100%",
+    margin: " auto",
+    position: "absolute",
+    top: "-100%",
+    right: "-100%",
+    bottom: "-100%",
+    left: "-100%"
+  },
   crop: {
     height: "100%",
     overflow: "hidden",
-    position: "relative",
+    position: "relative"
   },
   photoHolder: {
     background: "#fff",
     display: "inline-block",
     verticalAlign: "top",
+    width: "100%",
     marginRight: ".5em",
     marginBottom: ".3em",
-    borderRadius: "15px",
+    borderRadius: "20px",
     overflow: "hidden",
-    boxShadow: "0px 3px 10px #cccccc",
+    boxShadow: "0px 3px 10px #cccccc"
   },
   informationContainer: {
     display: "flex",
@@ -170,10 +179,10 @@ const style = {
   },
   productContainer: {
     display: "flex",
-    alignItems: "stretch",
     marginLeft: "100px",
     flexWrap: "wrap",
     marginBottom: "5%",
+    width: '100%'
   },
   container: {
     margin: "2% 11%",
@@ -186,6 +195,10 @@ const style = {
     marginTop: "2%",
     margin: "5%",
   },
+  product: {
+    width: "275px",
+    margin: "1% 2%"
+  }
 };
 
 export default DynamicCategory;

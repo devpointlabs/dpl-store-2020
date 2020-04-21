@@ -16,6 +16,7 @@ const CategoriesLinks = () => {
       .catch(console.log);
   }, []);
 
+
   return (
     <>
      <Header as="h3" className="heading">

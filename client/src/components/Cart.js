@@ -63,7 +63,7 @@ class Cart extends React.Component {
           <div style={style.cartContainer}>
             {cart.map(item => {
               let sizeColor = ''
-              if (item.size === 'No Size') { sizeColor = 'white' } else { sizeColor = '#777'}
+              if (item.size === 'noSize') { sizeColor = 'white' } else { sizeColor = '#777'}
               return (
                 <div style={isMobile ? mobile.item : style.item} key={`cartItem-${item.id}`}>
                   <div style={isMobile ? {...style.photoHolder, height: mobileHeight}: {...style.photoHolder, height: pictureHeight}} >
