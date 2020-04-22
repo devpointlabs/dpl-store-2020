@@ -95,7 +95,7 @@ export const PhotoHolder = styled.div`{
   width: 100%;
   margin-right: .5em;
   margin-bottom: .3em;
-  border-radius: 20px;
+  border-radius: 10px;
   overflow: hidden;
   box-shadow: 0px 3px 10px #cccccc;
   height:300px;
