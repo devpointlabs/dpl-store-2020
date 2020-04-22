@@ -143,10 +143,10 @@ const DynamicProduct = ({
                     style={style.dropdown}
                     onChange={e => setSize(e.currentTarget.value)}
                   >
-                    <option disabled selected value>
+                    {/* <option disabled selected value>
                       {" "}
                       -- select a size --{" "}
-                    </option>
+                    </option> */}
                     {items.map(({ label, value }) => (
                       <option key={value} value={value}>
                         {label}

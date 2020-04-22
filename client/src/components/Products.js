@@ -41,7 +41,6 @@ export default class Products extends Component {
     <>
     <h2 style={{marginLeft: "95px"}}>Search Results</h2>
     <div style={style.resultsContainer}>
-      <div style={style.resultsContainer}>
       {this.state.results.map((result) => (
         <div key={result.id}>
              <div style={{ ...style.photoHolder }}>
@@ -67,7 +66,6 @@ export default class Products extends Component {
        </div>
     ))}
   </div> 
-  </div>
   </>
   );
 
@@ -116,6 +114,7 @@ const style = {
     marginTop: "5%",
     marginBottom: "5%",
     justifyContent: "flex-start",
+    marginLeft: "95px",
   },
   crop: {
     height: "100%",
