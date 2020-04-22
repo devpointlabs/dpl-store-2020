@@ -45,18 +45,6 @@ const HomepageLayout = () => {
   </div>
   );
 
-  // useEffect( () => {
-  //   axios.get('/api/categories')
-  //     .then( res => {
-  //       setCategories(res.data)
-  //       console.log(res.data)
-  //       const categoriesArray = [res.data];
-  //       console.log(categories)
-  //       console.log(categoriesArray)
-  //     })
-  //     .catch(console.log)
-  // }, [])
-
   return (
     <>
       <div className="image-container">

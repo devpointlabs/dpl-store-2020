@@ -89,12 +89,12 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
           <div style={style.informationContainer}>
             <div>
               <Link to={`/categories/${cat_id}/products/${product.id}`}>
-                <h3 style={{ margin: "5px", display: "inline", color: "black", }}>
+                <h4 style={{ margin: "5px", display: "inline", color: "black", }}>
                   {"$" + product.price}
-                </h3>
-                <h5 style={{ margin: "5px", display: "inline", color: "black" }}>
+                </h4>
+                <h4 style={{ margin: "5px", display: "inline", color: "black" }}>
                   {product.title}
-                </h5>
+                </h4>
               </Link>
             </div>
           </div>
