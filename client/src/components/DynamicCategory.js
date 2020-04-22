@@ -37,7 +37,7 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
   // clears results when category changes
   useEffect(() => {
     setResults([]);
-  },[cat_id]);
+  }, [cat_id]);
 
   const renderResults = () => (
     <>
@@ -76,11 +76,11 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
       {items.map((product) => (
         <Grid.Column key={product.id} style={style.product} computer={5} mobile={7}>
           <Link to={`/categories/${cat_id}/products/${product.id}`}>
-            <div style={style.photoHolder}>
+            <PhotoHolder>
               <div style={style.crop}>
                 <Image style={style.photo} src={`${product.main_image}`} />
               </div>
-            </div>
+            </PhotoHolder>
           </Link>
 
           <div style={style.informationContainer}>
@@ -147,22 +147,20 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
 
 const style = {
   photo: {
-    width:"100%",
-    height:"100%",
+    display: "block",
+    minWidth: "100%",
+    minHeight: "100%",
+    margin: " auto",
+    position: "absolute",
+    top: "-100%",
+    right: "-100%",
+    bottom: "-100%",
+    left: "-100%"
   },
   crop: {
     height: "100%",
     overflow: "hidden",
     position: "relative"
-  },
-  photoHolder: {
-    background: "#fff",
-    verticalAlign: "top",
-    marginRight: ".5em",
-    marginBottom: ".3em",
-    borderRadius: "20px",
-    overflow: "hidden",
-    boxShadow: "0px 3px 10px #cccccc"
   },
   informationContainer: {
     justifyContent: "space-between",
@@ -233,6 +231,40 @@ const style = {
   `
 }
 
+const PhotoHolder = styled.div`{
+  background: #fff;
+  vertical-align: top;
+  width: 100%;
+  margin-right: .5em;
+  margin-bottom: .3em;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0px 3px 10px #cccccc;
+  height:250px;
+  @media(max-width: 600px) {
+    background: #fff;
+    vertical-align: top;
+    width: 100%;
+    margin-right: .5em;
+    margin-bottom: .3em;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 3px 10px #cccccc;
+    height:150px;
+  }
+  @media(min-width: 1500px) {
+    background: #fff;
+    vertical-align: top;
+    width: 100%;
+    margin-right: .5em;
+    margin-bottom: .3em;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 3px 10px #cccccc;
+    height:400px;
+  }
+}
+`
 const Truncated = styled.div `
   width: 120px;
   white-space: nowrap;

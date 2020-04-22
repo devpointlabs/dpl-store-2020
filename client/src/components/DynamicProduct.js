@@ -57,6 +57,8 @@ const DynamicProduct = ({
             src={product.main_image}
             style={style.altImage}
             onClick={() => pickShowImage(product.main_image)}
+            onMouseEnter={() => pickShowImage(product.main_image)}
+
           />
           {images.slice(0, 3).map(image => {
             if (image.url === null) {
@@ -68,6 +70,7 @@ const DynamicProduct = ({
                     style={style.altImage}
                     src={image.url}
                     onClick={() => pickShowImage(image.url)}
+                    onMouseEnter={() => pickShowImage(image.url)}
                   />
                 </>
               );
@@ -124,7 +127,7 @@ const DynamicProduct = ({
                       </option>
                     ))}
                   </select>
-                  <Image src={Arrow} style={style.arrow}></Image>
+                  {/* <Image src={Arrow} style={style.arrow}></Image> */}
                 </div>
                 <div>
                   <br />
@@ -225,14 +228,14 @@ const style = {
     textOverflow: "",
     paddingLeft: "10px",
   },
-  arrow: {
-    backgroundColor: "#FFFFFF",
-    width: "20px",
-    position: "absolute",
-    display: "inline-block",
-    left: "425px",
-    top: "305px"
-  }
+  // arrow: {
+  //   backgroundColor: "#FFFFFF",
+  //   width: "20px",
+  //   position: "absolute",
+  //   display: "inline-block",
+  //   left: "425px",
+  //   top: "305px"
+  // }
 };
 
 export default ConnectedDynamicProduct;

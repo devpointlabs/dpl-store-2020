@@ -141,21 +141,20 @@ const HeaderContent = styled.div`
 const DevPoint = styled.div`{
   font-size: 4vw;
   font-weight:bold; 
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 
   @media(max-width: 900px) {
-    font-size: 5vw;
+    font-size: 3vw;
     margin-bottom: 10px; 
   }
 }
 `
 const Find = styled.div`{
-  font-size: 2vw;
-  font-weight: light;
-  margin-bottom: 20px; 
+  font-size: 1.5vw;
+  margin-bottom: 30px; 
 
   @media(max-width: 900px) {
-    font-size: 3vw;
+    font-size: 1vw;
     margin-bottom: 10px;
     }
 }
