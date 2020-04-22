@@ -1,13 +1,21 @@
 # README
 
-To get mailer working 
-- go to application mailer and add your email to default from:
-- put 
-      GMAIL_USERNAME= your gmail email
-      GMAIL_PASSWORD= your gmail password 
+Welcome to the DevPoint Store!! <br />
+Here you will find all the awesome merch from DevPoint Labs and DevPoint Studios.<br />
+See the finished product here: https://devpoint-labs-store-2020.herokuapp.com/<br /><br />
 
-  into the .env file
+This website was built with Ruby on Rails and React.js<br /><br />
 
-  you might have to go to your gmail account and turn on the 
-  allow less secure application setting
+To Get Started:<br />
+After cloning the repository, checkout the .env.example file.<br />
+You will need to create your own Cloudinary account and enter your keys into the .env folder to load images and escape the 401 (unauthorized) error.<br />
+Visit the '/login' page to log in as an admin and add/update/remove merch.<br />
+Visit the '/' page to get the full user experience.<br /><br />
 
+To set up the Mailer (sends receipt to provided e-mail address after purchase):<br />
+Go to application mailer and add your email to default from:<br />
+   Put the following into the .env file:<br />
+      GMAIL_USERNAME= your Gmail address<br />
+      GMAIL_PASSWORD= your Gmail password <br /><br />
+
+If you experience issues you may need to turn on the "Allow Less Secure Application" setting in your Gmail Account.
