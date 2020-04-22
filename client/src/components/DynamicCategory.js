@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Image, Grid, Card } from "semantic-ui-react";
+import { Image, Grid, } from "semantic-ui-react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import BlueHeader from "../images/BlueHeader2.svg";
@@ -128,7 +128,8 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
         <div className="image-container">
           <Image src={BlueHeader} style={{ width: "100%" }} />
           <div className="centered">
-            <h1 className="large-header">{category && category.name}</h1>
+            <CatName>{category && category.name}</CatName>
+            <br/>
             <FunctionalSearch afterSearch={setResults} category_id={cat_id} />
             <h4 style={{marginLeft: "-350px"}}>Price</h4>
             <select style={style.sort} onChange={ (e) => setSortType(e.target.value) }>
@@ -165,7 +166,6 @@ const style = {
   photoHolder: {
     background: "#fff",
     verticalAlign: "top",
-    width: "100%",
     marginRight: ".5em",
     marginBottom: ".3em",
     borderRadius: "20px",
@@ -222,7 +222,7 @@ const style = {
     position: "absolute",
     display: "inline-block",
     left: "93px",
-    top: "205px",
+    top: "153px",
   },
   option: {
     backgroundColor: "white",
@@ -241,6 +241,16 @@ const Truncated = styled.div `
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-`;
+`
+const CatName = styled.div`{
+  font-size: 4vw;
+    font-weight:bold; 
+  @media(max-width: 900px) {
+    font-size: 5vw;
+    margin-bottom: '7%' 
+    }
+}
+`
+
 
 export default DynamicCategory;

@@ -5,7 +5,7 @@ import DynamicCategory from "./DynamicCategory";
 import BlueHeader from '../images/BlueHeader2.svg';
 import FunctionalSearch from './SharedComponents/FunctionalSearch';
 import { Link, } from 'react-router-dom';
-
+import styled from 'styled-components'
 
 
 export default class Products extends Component {
@@ -39,7 +39,7 @@ export default class Products extends Component {
 
   renderResults = () => (
     <>
-    <h2 style={{marginLeft: "95px"}}>Search Results</h2>
+    <h2>Search Results</h2>
     <div style={style.resultsContainer}>
       {this.state.results.map((result) => (
         <div key={result.id}>
@@ -77,8 +77,9 @@ export default class Products extends Component {
         <div className="image-container">
           <Image src={BlueHeader} fluid />
           <div className="centered">
-            <h1 className="large-header">All Merchandise</h1>
-            <h3 className="small-header">Find something you'll love.</h3>
+            <AllMerch>All Merchandise</AllMerch>
+            <br/>
+            <Find>Find something you'll love.</Find>
             <FunctionalSearch afterSearch={this.afterSearch}  />
           </div>
         </div>
@@ -114,7 +115,6 @@ const style = {
     marginTop: "5%",
     marginBottom: "5%",
     justifyContent: "flex-start",
-    marginLeft: "95px",
   },
   crop: {
     height: "100%",
@@ -137,3 +137,22 @@ const style = {
     marginTop: "5%",
   },
 }
+
+const AllMerch = styled.div`{
+  font-size: 4vw;
+    font-weight:bold; 
+  @media(max-width: 900px) {
+    font-size: 5vw;
+    margin-bottom: '7%' 
+    }
+}
+`
+const Find = styled.div`{
+  font-size: 2vw;
+    margin-bottom: 2%; 
+  @media(max-width: 900px) {
+    font-size: 3vw;
+    margin-bottom: 5%
+    }
+}
+`

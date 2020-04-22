@@ -6,6 +6,7 @@ import FunctionalSearch from "./SharedComponents/FunctionalSearch";
 import FeaturedProducts from "./FeaturedProducts";
 import axios from "axios";
 import CategoriesLinks from "./CategoriesLinks";
+import styled from 'styled-components'
 
 const HomepageLayout = () => {
   const [results, setResults] = useState([]);
@@ -62,11 +63,12 @@ const HomepageLayout = () => {
       <div className="image-container">
         <Image src={BlueHeader} />
         {/* <div style={{backgroundSize: "cover", backgroundPosition: "top", backgroundRepeat: "no-repeat", backgroundImage: `url(${BlueHeader})`}} /> */}
-        <div className="centered">
-          <h1 className="large-header">DevPoint Store</h1>
-          <h3 className="small-header">Find something you'll love.</h3>
+        <HeaderContent className="centered">
+          <DevPoint>DevPoint Store</DevPoint>
+          <br/>
+          <Find>Find something you'll love.</Find>
           <FunctionalSearch afterSearch={afterSearch} />
-        </div>
+        </HeaderContent>
       </div>
 
       <div style={style.container}>
@@ -139,5 +141,34 @@ const style = {
     marginTop: "5%",
   },
 }
+
+const HeaderContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`
+
+const DevPoint = styled.div`{
+  font-size: 4vw;
+  font-weight:bold; 
+  margin-bottom: 15px;
+
+  @media(max-width: 900px) {
+    font-size: 5vw;
+    margin-bottom: 10px; 
+  }
+}
+`
+const Find = styled.div`{
+  font-size: 2vw;
+  font-weight: light;
+  margin-bottom: 15px; 
+
+  @media(max-width: 900px) {
+    font-size: 3vw;
+    margin-bottom: 5%
+    }
+}
+`
 
 export default HomepageLayout;
