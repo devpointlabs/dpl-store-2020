@@ -7,6 +7,8 @@ import FunctionalSearch from "./SharedComponents/FunctionalSearch";
 import Products from "./Products";
 import Arrow from "../images/LineArrowDown.svg";
 import styled from 'styled-components';
+import RoundImage from "./SharedComponents/RoundImage";
+
 
 const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
   const [items, setItems] = useState([]);
@@ -19,10 +21,7 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
   useEffect(() => {
     axios
       .get(`/api/categories/${cat_id}/products`)
-      .then(res => {
-        setItems(res.data)
-        sortItems(sortType)
-      })
+      .then(res => sortItems(res.data, sortType))
       .catch(console.log);
   }, [sortType, cat_id]);
 
@@ -42,34 +41,32 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
 
   const renderResults = () => (
     <>
-    <h2 style={{marginLeft: "120px"}}>Search Results</h2>
+    <h2>Search Results</h2>
     <div style={style.resultsContainer}>
     {results.map((result) => (
-        <div key={result.id} >
-           <div style={{ ...style.photoHolder }}>
-            <div style={style.crop}>
-            <Link to={`/categories/${result.category_id}/products/${result.id}`}>
-              <Image src={result.main_image} alt={result.title} size="small" />
-              </Link>
-              </div>
-              </div>
-        <div style={style.informationContainer}>
-        <div>
-            <Link to={`/categories/${result.category_id}/products/${result.id}`} style={{color: "black"}}>
-            <h4 style={{ margin: "5px", }}>
-                  {"$" + result.price}
+        <div key={result.id} style={{marginRight: "20px"}}  >
+          <Link to={`/categories/${result.category_id}/products/${result.id}`}>
+            <RoundImage 
+              src={result.main_image}
+              height="200px"
+              width="200px"
+              style={{marginRight: "20px"}}
+              media={style.imageMedia}
+            />
+          </Link>
+          <div style={style.informationContainer}>
+            <div>
+              <Link to={`/categories/${result.category_id}/products/${result.id}`} style={{color: "black"}}>
+                <h4 style={{ margin: "5px", }}>
+                  {"$" + result.price + " " + result.title}
                 </h4>
-                <h5 style={{ margin: "5px",  }}>
-                  {result.title}
-                </h5>
-            </Link>
+              </Link>
+            </div>
+          </div> 
         </div>
-        </div> 
-       </div>
     ))}
-     </div>
-    
-     </>
+    </div>
+    </>
   );
 
 
@@ -104,20 +101,16 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
     </Grid >
   );
 
-  const sortItems = type => {
+  const sortItems = (items, type) => {
+    let sorted = [];
     if (type == 'highPrice') {
-      const sorted = [...items].sort((a, b) => a.price > b.price ? -1 : 1);
-      setItems(sorted);
+      sorted = items.sort((a, b) => a.price > b.price ? -1 : 1);
     } else if (type == 'lowPrice') {
-      const sorted = [...items].sort((a, b) => a.price > b.price ? 1 : -1);
-      setItems(sorted);
+      sorted = items.sort((a, b) => a.price > b.price ? 1 : -1);
     } else {
-      const sorted = [...items].sort((a, b) => {
-        a = new Date(a.created_at);
-        b = new Date(b.created_at);
-        return a > b ? 1 : -1;
-      });
+      sorted = items;
     };
+    setItems(sorted);
   };
 
   if (noHeader) {
@@ -189,7 +182,7 @@ const style = {
     width: '100%',
     height: "100%",
     justifyContent:"left",
-    marginLeft: "2.5%",
+    marginBottom: "70px",
   },
   container: {
     margin: "2% 11%",
@@ -198,7 +191,6 @@ const style = {
   resultsContainer: {
     display: "flex",
     flexWrap: "wrap",
-    marginLeft: "120px",
     marginTop: "5%",
     marginBottom: "5%",
     justifyContent: "flex-start",
@@ -233,7 +225,13 @@ const style = {
     height: "25%",
     // margin: "50px",
     // padding: "5px",
-  }
+  },
+  imageMedia: `
+    @media (max-width: 900px) {
+      height: 125px;
+      width: 125px;
+    }
+  `
 }
 
 const Truncated = styled.div `
