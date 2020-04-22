@@ -15,7 +15,6 @@ const DynamicProduct = ({
   const [size, setSize] = useState("");
   const [showImage, setShowImage] = useState("");
   const [images, setImages] = useState([]);
-  const [category, setCategory] = useState("");
   const [items, setItems] = useState([]);
 
   // gets product on initial render

@@ -42,6 +42,7 @@ const CategoriesLinks = () => {
             style={styles.GridItem}
             computer={4}
             mobile={8}
+            key = {category.id}
           >
             <Image
               src={category.image}
