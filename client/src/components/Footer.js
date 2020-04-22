@@ -3,6 +3,7 @@ import { Segment, Grid, Icon, Image } from "semantic-ui-react";
 import styled from 'styled-components';
 import Logo from '../images/dpl_logo.svg';
 import Pin from '../images/Pin.svg';
+import { Link } from 'react-router-dom'
 
 class Footer extends React.Component {
   state={isMobile: window.innerWidth < 900}
@@ -57,7 +58,7 @@ class Footer extends React.Component {
       <div className="dpl-blue" align="right" style={{ padding: '.5%', color: 'white' }}>
         <p style={isMobile ? {fontSize:'2vw'}: {fontSize:'1vw'}}>
           <Image align="left" size={isMobile ? 'tiny' : 'small'} src={Logo} className="filter-white"/>
-          <Icon name="copyright outline" fitted inverted size={isMobile ? '14px' : '16px'} /> 2020 DevPoint Labs Terms Policy
+          <Icon name="copyright outline" fitted inverted size={isMobile ? '14px' : '16px'} /> 2020 DevPoint Labs <Link to='/terms' style={{color: "white"}}>Terms</Link> <Link to='/policy' style={{color: "white"}}>Policy</Link>
           </p>
       </div>
     </div>)

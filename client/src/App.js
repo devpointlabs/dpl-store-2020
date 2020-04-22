@@ -17,6 +17,8 @@ import Links from './components/Links';
 import StyledCard from './components/SharedComponents/StyledCard';
 import Cart from './components/Cart';
 import NoMatch from './components/NoMatch';
+import Terms from './components/Terms';
+import Policy from './components/Policy';
 
 
 class App extends React.Component {
@@ -53,6 +55,8 @@ class App extends React.Component {
                   <Route exact path='/styled' component={StyledCard} />
                   <Route exact path='/links' component={Links} />
                   <Route exact path='/cart' component={Cart} />
+                  <Route exact path= '/terms' component={Terms}/>
+                  <Route exact path= '/policy' component={Policy}/>
                   <Route component={NoMatch} />
                 </Switch>
               </Container>
