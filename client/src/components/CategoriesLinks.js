@@ -23,7 +23,6 @@ const CategoriesLinks = () => {
     <Grid style={styles.Grid} computer={4} mobile={2}>
         {categories.map(category => (
           <Grid.Column
-            centered
             as={Link}
             to={`/categories/${category.id}/products`}
             style={styles.GridItem}
