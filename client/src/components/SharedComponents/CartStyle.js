@@ -74,8 +74,8 @@ export const style = {
 export const ItemsContainer = styled.div`{
   margin: 5% 5%;
   margin-bottom:10%;
-  @media(min-width: 1200px) {
-    margin: 3% 10%;
+  @media(min-width: 1500px) {
+    margin: 3% 20%;
     margin-bottom:10%;
   }
   @media(max-width: 500px) {
