@@ -16,28 +16,7 @@ const DynamicProduct = ({
   const [showImage, setShowImage] = useState("");
   const [images, setImages] = useState([]);
   const [category, setCategory] = useState("");
-  const [items, setItems] = useState([
-    {
-      label: "X-Small",
-      value: "X-Small"
-    },
-    {
-      label: "Small",
-      value: "Small"
-    },
-    {
-      label: "Medium",
-      value: "Medium"
-    },
-    {
-      label: "Large",
-      value: "Large"
-    },
-    {
-      label: "X-Large",
-      value: "X-Large"
-    }
-  ]);
+  const [items, setItems] = useState([]);
 
   // gets product on initial render
   useEffect(() => {
@@ -143,10 +122,6 @@ const DynamicProduct = ({
                     style={style.dropdown}
                     onChange={e => setSize(e.currentTarget.value)}
                   >
-                    {/* <option disabled selected value>
-                      {" "}
-                      -- select a size --{" "}
-                    </option> */}
                     {items.map(({ label, value }) => (
                       <option key={value} value={value}>
                         {label}

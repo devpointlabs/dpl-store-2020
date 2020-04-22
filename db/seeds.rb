@@ -1,6 +1,6 @@
 
 
-tshirts = Category.create(name: 'T-Shirts', image: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587490051/U2NyZWVuIFNob3QgMjAyMC0wNC0yMSBhdCAxMS4yNi40NSBBTS5wbmc=/preview')
+tshirts = Category.create(name: 'T-Shirts', image: 'https://res.cloudinary.com/dpo2wzfn1/image/upload/v1587490051/Screen%20Shot%202020-04-21%20at%2011.26.45%20AM.png.png')
 
 shirt = Product.create(
   category_id: tshirts.id,
@@ -9,12 +9,12 @@ shirt = Product.create(
     price: 7,
     has_size: true,
     sizes: { Xsmall: 5, Small: 5, Medium: 5, Large: 5, XLarge: 5, XXL: 5 },
-    main_image: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587486640/RFBMX0dyYXkuanBn/preview',
+    main_image: 'https://res.cloudinary.com/dpo2wzfn1/image/upload/v1587486640/DPL_Gray.jpg.jpg',
     featured: 'true'
 )
 
 Image.create(
-  url: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587486652/RFBMX0dyYXlfQmFjay5qcGc=/preview', 
+  url: 'https://res.cloudinary.com/dpo2wzfn1/image/upload/v1587486652/DPL_Gray_Back.jpg.jpg', 
   product_id: shirt.id,
 )
 
@@ -25,7 +25,7 @@ Product.create(
     price: 7,
     has_size: true,
     sizes: { Xsmall: 5, Small: 5, Medium: 5, Large: 5, XLarge: 5, XXL: 5 },
-    main_image: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587487345/UGxhbmV0LmpwZw==/preview',
+    main_image: 'https://res.cloudinary.com/dpo2wzfn1/image/upload/v1587487345/Planet.jpg.jpg',
     featured: 'false'
 )
 
@@ -38,18 +38,18 @@ hat = Product.create(
     price: 15,
     has_size: true,
     sizes: {noSize: 20 },
-    main_image: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587486257/RFBMX0hhdC5qcGc=/preview',
+    main_image: 'https://res.cloudinary.com/dpo2wzfn1/image/upload/v1587486257/DPL_Hat.jpg.jpg',
     featured: 'true'
 )
 
 Image.create(
-  url: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587487265/RFBMX0hhdDIuanBn/preview', 
+  url: 'https://res.cloudinary.com/dpo2wzfn1/image/upload/v1587487265/DPL_Hat2.jpg.jpg', 
   product_id: hat.id,
 )
 
 
 
-hoodies = Category.create(name: 'Hoodies', image:'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587490157/U2NyZWVuIFNob3QgMjAyMC0wNC0yMSBhdCAxMS4yOC4yNiBBTS5wbmc=/preview')
+hoodies = Category.create(name: 'Hoodies', image:'https://res.cloudinary.com/dpo2wzfn1/image/upload/v1587490157/Screen%20Shot%202020-04-21%20at%2011.28.26%20AM.png.png')
 
 jacket = Product.create(
   category_id: hoodies.id,
@@ -58,12 +58,12 @@ jacket = Product.create(
     price: 30,
     has_size: true,
     sizes: { Xsmall: 5, Small: 5, Medium: 5, Large: 5, XLarge: 5, XXL: 5 },
-    main_image: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587487178/RFBMX0phY2tldC5qcGc=/preview',
+    main_image: 'https://res.cloudinary.com/dpo2wzfn1/image/upload/v1587487178/DPL_Jacket.jpg.jpg',
     featured: 'true'
 )
 
 Image.create(
-  url: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587487188/RFBMX0phY2tldDIuanBn/preview', 
+  url: 'https://res.cloudinary.com/dpo2wzfn1/image/upload/v1587487188/DPL_Jacket2.jpg.jpg', 
   product_id: jacket.id,
 )
 
@@ -74,7 +74,7 @@ Product.create(
     price: 20,
     has_size: true,
     sizes: { Xsmall: 5, Small: 5, Medium: 5, Large: 5, XLarge: 5, XXL: 5 },
-    main_image: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587487446/RFBMX0JsYWNrX0hvb2RpZS5qcGc=/preview',
+    main_image: 'https://res.cloudinary.com/dpo2wzfn1/image/upload/v1587487446/DPL_Black_Hoodie.jpg.jpg',
     featured: 'false'
 
 )
@@ -86,24 +86,24 @@ greyhoodie = Product.create(
     price: 25,
     has_size: true,
     sizes: { Xsmall: 5, Small: 5, Medium: 5, Large: 5, XLarge: 5, XXL: 5 },
-    main_image: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587487545/RFBMX0dyYXlfSG9vZGllLmpwZw==/preview',
+    main_image: 'https://res.cloudinary.com/dpo2wzfn1/image/upload/v1587487545/DPL_Gray_Hoodie.jpg.jpg',
     featured: 'true'
 )
 
 Image.create(
-  url: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587487554/RFBMX0dyYXlfSG9vZGllX0JhY2suanBn/preview', 
+  url: 'https://res.cloudinary.com/dpo2wzfn1/image/upload/v1587487554/DPL_Gray_Hoodie_Back.jpg.jpg', 
   product_id: greyhoodie.id,
 )
 Image.create(
-  url: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587487568/RFBMX0dyYXlfSG9vZGllMi5qcGc=/preview', 
+  url: 'https://res.cloudinary.com/dpo2wzfn1/image/upload/v1587487568/DPL_Gray_Hoodie2.jpg.jpg', 
   product_id: greyhoodie.id,
 )
 Image.create(
-  url: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587487579/RFBMX0hvb2RpZV8zLmpwZw==/preview', 
+  url: 'https://res.cloudinary.com/dpo2wzfn1/image/upload/v1587487579/DPL_Hoodie_3.jpg.jpg', 
   product_id: greyhoodie.id,
 )
 
-other = Category.create(name: 'Other', image: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587490174/U2NyZWVuIFNob3QgMjAyMC0wNC0yMSBhdCAxMS4yOC40NCBBTS5wbmc=/preview')
+other = Category.create(name: 'Other', image: 'https://res.cloudinary.com/dpo2wzfn1/image/upload/v1587490174/Screen%20Shot%202020-04-21%20at%2011.28.44%20AM.png.png')
 glasses = Product.create(
   category_id: other.id,
     title: 'Glasses',
@@ -111,12 +111,12 @@ glasses = Product.create(
     price: 15,
     has_size: false,
     sizes: {noSize: 20 },
-    main_image: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587486943/U3VuZ2xhc3Nlcy5qcGc=/preview',
+    main_image: 'https://res.cloudinary.com/dpo2wzfn1/image/upload/v1587486943/Sunglasses.jpg.jpg',
     featured: 'true'
 )
 
 Image.create(
-  url: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587486953/U3VuZ2xhc3MyLmpwZw==/preview', 
+  url: 'https://res.cloudinary.com/dpo2wzfn1/image/upload/v1587486953/Sunglass2.jpg.jpg', 
   product_id: glasses.id,
 )
 Product.create(
@@ -126,7 +126,7 @@ Product.create(
     price: 6,
     has_size: false,
     sizes: {noSize: 20 },
-    main_image: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587486977/RFBMX2tvb3ppZS5qcGc=/preview',
+    main_image: 'https://res.cloudinary.com/dpo2wzfn1/image/upload/v1587486977/DPL_koozie.jpg.jpg',
     featured: 'false'
 
 )
@@ -137,7 +137,7 @@ Product.create(
     price: 2,
     has_size: false,
     sizes: {noSize: 20 },
-    main_image: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587487000/UDEwNDkwNjQuanBlZw==/preview',
+    main_image: 'https://res.cloudinary.com/dpo2wzfn1/image/upload/v1587487000/P1049064.jpeg.jpg',
     featured: 'false'
 
 )
@@ -148,7 +148,7 @@ Product.create(
     price: 1,
     has_size: false,
     sizes: {noSize: 20 },
-    main_image: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587487027/UDEwNDkwNjUuanBlZw==/preview',
+    main_image: 'https://res.cloudinary.com/dpo2wzfn1/image/upload/v1587487027/P1049065.jpeg.jpg',
     featured: 'false'
 
 )
@@ -159,7 +159,7 @@ Product.create(
     price: 2,
     has_size: false,
     sizes: {noSize: 20 },
-    main_image: 'https://res-console.cloudinary.com/dpo2wzfn1/thumbnails/v1/image/upload/v1587487052/UDEwNDkwNjguanBlZw==/preview',
+    main_image: 'https://res.cloudinary.com/dpo2wzfn1/image/upload/v1587487052/P1049068.jpeg.jpg',
     featured: 'false'
 )
 

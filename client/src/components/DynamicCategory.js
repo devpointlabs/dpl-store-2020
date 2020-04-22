@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Image, } from "semantic-ui-react";
+import { Image, Grid, Card } from "semantic-ui-react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import BlueHeader from "../images/BlueHeader2.svg";
@@ -48,38 +48,38 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
         <div key={result.id} >
            <div style={{ ...style.photoHolder }}>
             <div style={style.crop}>
-          <Link to={`/categories/${result.category_id}/products/${result.id}`}>
-            <Image src={result.main_image} alt={result.title} size="small"/>
-            </Link>
-            </div>
-        </div>
-        <div style={style.informationContainer}>
             <Link to={`/categories/${result.category_id}/products/${result.id}`}>
-            <Truncated>
+              <Image src={result.main_image} alt={result.title} size="small" />
+              </Link>
+              </div>
+              </div>
+        <div style={style.informationContainer}>
+        <div>
+            <Link to={`/categories/${result.category_id}/products/${result.id}`} style={{color: "black"}}>
             <h4 style={{ margin: "5px", }}>
                   {"$" + result.price}
                 </h4>
                 <h5 style={{ margin: "5px",  }}>
                   {result.title}
                 </h5>
-                </Truncated>
             </Link>
-
+        </div>
         </div> 
        </div>
     ))}
      </div>
+    
      </>
   );
 
 
 
   const renderItems = () => (
-    <div style={style.productContainer}>
+    <Grid style={style.productContainer} computer={3} mobile={2}>
       {items.map((product) => (
-        <div key={product.id} style={style.product}>
+        <Grid.Column key={product.id} style={style.product} computer={5} mobile={7}>
           <Link to={`/categories/${cat_id}/products/${product.id}`}>
-            <div style={{ ...style.photoHolder, height: '275px' }}>
+            <div style={style.photoHolder}>
               <div style={style.crop}>
                 <Image style={style.photo} src={`${product.main_image}`} />
               </div>
@@ -89,19 +89,19 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
           <div style={style.informationContainer}>
             <div>
               <Link to={`/categories/${cat_id}/products/${product.id}`}>
-                <h3 style={{ margin: "5px", display: "inline" }}>
+                <h3 style={{ margin: "5px", display: "inline", color: "black", }}>
                   {"$" + product.price}
                 </h3>
-                <h5 style={{ margin: "5px", display: "inline" }}>
+                <h5 style={{ margin: "5px", display: "inline", color: "black" }}>
                   {product.title}
                 </h5>
               </Link>
             </div>
           </div>
-        </div>
+        </Grid.Column>
       ))
       }
-    </div >
+    </Grid >
   );
 
   const sortItems = type => {
@@ -154,15 +154,8 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
 
 const style = {
   photo: {
-    display: "block",
-    minWidth: "100%",
-    minHeight: "100%",
-    margin: " auto",
-    position: "absolute",
-    top: "-100%",
-    right: "-100%",
-    bottom: "-100%",
-    left: "-100%"
+    width:"100%",
+    height:"100%",
   },
   crop: {
     height: "100%",
@@ -171,7 +164,6 @@ const style = {
   },
   photoHolder: {
     background: "#fff",
-    display: "inline-block",
     verticalAlign: "top",
     width: "100%",
     marginRight: ".5em",
@@ -181,7 +173,6 @@ const style = {
     boxShadow: "0px 3px 10px #cccccc"
   },
   informationContainer: {
-    display: "flex",
     justifyContent: "space-between",
     marginTop: "5%",
   },
@@ -195,11 +186,10 @@ const style = {
     backgroundColor: "rgba(74,1,219, .03)",
   },
   productContainer: {
-    display: "flex",
-    marginLeft: "100px",
-    flexWrap: "wrap",
-    marginBottom: "5%",
-    width: '100%'
+    width: '100%',
+    height: "100%",
+    justifyContent:"left",
+    marginLeft: "2.5%",
   },
   container: {
     margin: "2% 11%",
@@ -238,16 +228,13 @@ const style = {
     backgroundColor: "white",
   },
   product: {
-    width: "275px",
-    margin: "1% 2%"
-  },
-  truncate: {
-    width: "100px",
-    whiteSpace: "nowrap",
-    overflow: "hidden",
-    textOverflow: "ellipsis",
+    // display: "block",
+    width: "25%",
+    height: "25%",
+    // margin: "50px",
+    // padding: "5px",
   }
-};
+}
 
 const Truncated = styled.div `
   width: 120px;

@@ -28,7 +28,7 @@ const HomepageLayout = () => {
         </div>
         <div style={style.informationContainer}>
             <div>
-            <Link to={`/categories/${result.category_id}/products/${result.id}`}>
+            <Link to={`/categories/${result.category_id}/products/${result.id}`} style={{color: "black"}}>
             <h4 style={{ margin: "5px", }}>
                   {"$" + result.price}
                 </h4>
@@ -98,7 +98,6 @@ const style = {
   },
   container: {
     margin: "2% 11%",
-    marginTop: "5%",
     align: "center"
   },
   categoryLinks: {

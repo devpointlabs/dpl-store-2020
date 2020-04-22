@@ -52,7 +52,7 @@ export default class Products extends Component {
         </div>
         <div style={style.informationContainer}>
             <div>
-            <Link to={`/categories/${result.category_id}/products/${result.id}`}>
+            <Link to={`/categories/${result.category_id}/products/${result.id}`} style={{color: "black"}}>
             <h4 style={{ margin: "5px", }}>
                   {"$" + result.price}
                 </h4>

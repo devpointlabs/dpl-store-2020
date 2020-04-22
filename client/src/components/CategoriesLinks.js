@@ -15,7 +15,18 @@ const CategoriesLinks = () => {
       })
       .catch(console.log);
   }, []);
-
+  
+  const renderLinks = () =>
+    categories.map( (category) => (
+      <div key={`${category.id}`}>
+        <Link style={{color:'black'}}>
+        <Grid.Column to={`/categories/${category.id}/products`}>
+          <Image src={category.image} alt={category.name} style={styles.image}/>
+          <h4 align="center">{category.name}</h4>
+        </Grid.Column>
+        </Link>
+      </div>
+    ))
 
   return (
     <>
@@ -23,7 +34,6 @@ const CategoriesLinks = () => {
         CATEGORIES
       </Header>
     <Grid style={styles.Grid} computer={4} mobile={2}>
-     
         {categories.map(category => (
           <Grid.Column
             centered
@@ -59,7 +69,6 @@ const styles = {
     height: "100%",
   },
   GridItem:{
-    // padding:"40px",
     width: "25%",
     height: "20%",
     marginTop:"25px",
@@ -67,7 +76,6 @@ const styles = {
   },
   Text:{
     paddingTop: "15%",
-    // textAlign: "left",
     color: "Black",
     fontSize: "20px",
     textAlign: "center"

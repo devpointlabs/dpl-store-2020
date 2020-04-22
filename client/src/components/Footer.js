@@ -5,67 +5,84 @@ import Logo from '../images/dpl_logo.svg';
 import Pin from '../images/Pin.svg';
 import { Link } from 'react-router-dom'
 
-class Footer extends React.Component {
-  state={isMobile: window.innerWidth < 900}
-  
-  componentDidMount(){
-    window.addEventListener('resize', this.handleResize)
-  }
-
-  componentWillUnmount(){
-    window.removeEventListener('resize', this.handleResize)
-  }
-
-  handleResize = () => {
-    this.setState({isMobile: window.innerWidth < 900 })
-  }
-
-  render(){
-    const {isMobile} = this.state
-    return(<div>
+const Footer = () => (
+    <div>
       <StyledFooter as={Segment} inverted className="dpl-blue" style={{ marginBottom: '2px', paddingTop: '2%', paddingBottom: '2%',  borderRadius: '30px' }}>
         <div style={{display:'flex', justifyContent:'center', flexDirection:'column'}}>
-          <div style={isMobile ? { fontSize: '3vw', marginBottom: '7%' }: { fontSize: '2vw', marginBottom: '7%' }}>Any questions?</div>
-          <div style={isMobile ? { fontSize: '5vw', marginBottom: '7%' }: { fontSize: '4vw', fontWeight: 'bold' }}>We're here to help.</div>
+          <Questions>Any questions?</Questions>
+          <WereHere>We're here to help.</WereHere>
   
         </div>
-        <div style={isMobile ? { width: '50%' } :{ width: '30%' }}>
-          <StyledContact style={isMobile ? {padding:'2%'} : {padding:'5%'}}>
+        <ContactHolder>
+          <StyledContact >
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', marginLeft: '1%', marginRight: '4%' }}>
               <Icon name="mail" style={{ fontSize: '16px' }} />
             </div>
-            <div style={isMobile ? { fontSize: '2vw' }: { fontSize: '1.5vw' }}>contact@devpointlabs.com</div>
+            <ContactText>contact@devpointlabs.com</ContactText>
           </StyledContact>
-          <StyledContact style={isMobile ? {padding:'2%'} : {padding:'5%'}}>
+          <StyledContact >
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', marginRight: '4%' }}>
               <Image src={Pin} size="mini" inline style={{ height: "20px", width: "20px" }} />
             </div>
             <div >
-              <div style={isMobile ? { fontSize: '2vw' }: { fontSize: '1.5vw' }}>
+              <ContactText>
                 370 South 300 East<br />
               Salt Lake City, Utah<br />
-              84111</div>
+              84111</ContactText>
             </div>
           </StyledContact>
-          <StyledContact style={isMobile ? {padding:'2%'} : {padding:'5%'}}>
+          <StyledContact >
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', marginLeft: '1%', marginRight: '4%' }}>
               <Icon name="phone" flipped='horizontally' style={{ fontSize: '16px' }} />
             </div>
-            <div style={isMobile ? { fontSize: '2vw' }: { fontSize: '1.5vw' }}>801-448-7420</div>
+            <ContactText>801-448-7420</ContactText>
           </StyledContact>
-        </div>
+        </ContactHolder>
       </StyledFooter>
       <div className="dpl-blue" align="right" style={{ padding: '.5%', color: 'white' }}>
-        <p style={isMobile ? {fontSize:'2vw'}: {fontSize:'1vw'}}>
-          <Image align="left" size={isMobile ? 'tiny' : 'small'} src={Logo} className="filter-white"/>
-          <Icon name="copyright outline" fitted inverted size={isMobile ? '14px' : '16px'} /> 2020 DevPoint Labs <Link to='/terms' style={{color: "white"}}>Terms</Link> <Link to='/policy' style={{color: "white"}}>Policy</Link>
+        <p style={window.innerWidth < 900 ? {fontSize:'2vw'}: {fontSize:'1vw'}}>
+          <Image align="left" size={window.innerWidth < 900 ? 'tiny' : 'small'} src={Logo} className="filter-white"/>
+          <Icon name="copyright outline" fitted inverted size={window.innerWidth < 900 ? '14px' : '16px'} /> 2020 DevPoint Labs <Link to='/terms' style={{color: "white"}}>Terms</Link> <Link to='/policy' style={{color: "white"}}>Policy</Link>
           </p>
       </div>
-    </div>)
-  }
+    </div>
   
-}
+)
 
+const WereHere = styled.div`{
+  font-size: 4vw;
+    font-weight:bold; 
+  @media(max-width: 900px) {
+    font-size: 5vw;
+    margin-bottom: '7%' 
+    }
+}
+`
+
+const Questions = styled.div`{
+  font-size: 2vw;
+    margin-bottom: 7%; 
+  @media(max-width: 900px) {
+    font-size: 3vw;
+    margin-bottom: 7%
+    }
+}
+`
+
+const StyledP = styled.p`{
+  font-size: 1vw;
+  @media(max-width: 900px) {
+    font-size: 2vw
+    }
+}
+`
+const ContactHolder = styled.div`{
+  width: 30%;
+  @media(max-width: 900px) {
+    width: 50%
+    }
+}
+`
 
 const StyledFooter = styled.div` {
   position: relative;
@@ -109,7 +126,17 @@ const StyledContact = styled.div` {
   font-size: 1vw;
   margin: 2%;
   display:flex;
+
+  @media(max-width: 900px) {
+    padding: 2%
+    }
 }
 `
+const ContactText = styled.div `{
+  font-size: 1.5vw;
+  @media(max-width: 900px) {
+    font-size: 2vw
+    }
+}`
 
 export default Footer;
