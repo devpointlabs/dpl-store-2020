@@ -49,21 +49,21 @@ const Footer = () => (
 )
 
 const WereHere = styled.div`{
-  font-size: '4vw';
-    fontWeight:bold; 
+  font-size: 4vw;
+    font-weight:bold; 
   @media(max-width: 900px) {
-    font-size: '5vw';
+    font-size: 5vw;
     margin-bottom: '7%' 
     }
 }
 `
 
 const Questions = styled.div`{
-  font-size: '2vw';
-    margin-bottom: '7%'; 
+  font-size: 2vw;
+    margin-bottom: 7%; 
   @media(max-width: 900px) {
-    font-size: '3vw';
-    margin-bottom: '7%' 
+    font-size: 3vw;
+    margin-bottom: 7%
     }
 }
 `
