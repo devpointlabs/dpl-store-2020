@@ -15,28 +15,34 @@ const HomepageLayout = () => {
 
   const renderResults = () => (
     <div style={style.searchContainer}>
-      <h2>Search Results</h2>
-      <div style={style.resultsContainer}>
-        {results.map(result => (
-          <div key={result.id}>
-            <Image
-              src={result.main_image}
-              alt={result.title}
-              size="small"
-              as={Link}
-              to={`/categories/${result.category_id}/products/${result.id}`}
-            />
-            <Link to={`/categories/${result.category_id}/products/${result.id}`}>
-              <Card.Header style={{color:'black'}}>{result.title}</Card.Header>
+    <h2 >Search Results</h2>
+    <div style={style.resultsContainer}>
+    {results.map((result) => (
+      <div key={result.id}>
+       <div style={{ ...style.photoHolder }}>
+            <div style={style.crop}>
+          <Link to={`/categories/${result.category_id}/products/${result.id}`}>
+            <Image src={result.main_image} alt={result.title} size="small"/>
             </Link>
-            <Link to={`/categories/${result.category_id}/products/${result.id}`}>
-              <Card.Meta style={{color:'black'}}>${result.price}</Card.Meta>
+            </div>
+        </div>
+        <div style={style.informationContainer}>
+            <div>
+            <Link to={`/categories/${result.category_id}/products/${result.id}`} style={{color: "black"}}>
+            <h4 style={{ margin: "5px", }}>
+                  {"$" + result.price}
+                </h4>
+                <h5 style={{ margin: "5px",  }}>
+                  {result.title}
+                </h5>
             </Link>
-            <br />
-          </div>
-        ))}
-      </div>
-    </div>
+          <br />
+        </div> 
+       </div>
+       </div>
+    ))}
+  </div> 
+  </div>
   );
 
   return (
@@ -80,7 +86,6 @@ const style = {
   },
   container: {
     margin: "2% 11%",
-    marginTop: "5%",
     align: "center"
   },
   categoryLinks: {
@@ -93,14 +98,34 @@ const style = {
   },
   resultsContainer: {
     display: "flex",
-    justifyContent: "center",
     flexWrap: "wrap",
+    alignItems: 'left',
     marginTop: "2%",
     margin: "5%"
   },
   searchContainer: {
     marginTop: "5%"
-  }
-};
+  },
+  crop: {
+    height: "100%",
+    overflow: "hidden",
+    position: "relative",
+  },
+  photoHolder: {
+    background: "#fff",
+    display: "inline-block",
+    verticalAlign: "top",
+    marginRight: ".5em",
+    marginBottom: ".3em",
+    borderRadius: "15px",
+    overflow: "hidden",
+    boxShadow: "0px 3px 10px #cccccc",
+  },
+  informationContainer: {
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: "5%",
+  },
+}
 
 export default HomepageLayout;
