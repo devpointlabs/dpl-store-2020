@@ -97,7 +97,7 @@ class CategoryForm extends Component {
                   );
                 }}
               </Dropzone>
-              <img src={image} style={styles.image} />
+              <img src={image} style={styles.image} alt="Alternate" />
             </div>
             <Form.Button positive>Submit</Form.Button>
             <Form.Button onClick={this.handleClose} negative>

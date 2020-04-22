@@ -7,6 +7,8 @@ import FunctionalSearch from "./SharedComponents/FunctionalSearch";
 import Products from "./Products";
 import Arrow from "../images/LineArrowDown.svg";
 import styled from 'styled-components';
+import RoundImage from "./SharedComponents/RoundImage";
+
 
 const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
   const [items, setItems] = useState([]);
@@ -19,10 +21,7 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
   useEffect(() => {
     axios
       .get(`/api/categories/${cat_id}/products`)
-      .then(res => {
-        setItems(res.data)
-        sortItems(sortType)
-      })
+      .then(res => sortItems(res.data, sortType))
       .catch(console.log);
   }, [sortType, cat_id]);
 
@@ -42,34 +41,32 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
 
   const renderResults = () => (
     <>
-    <h2 style={{marginLeft: "120px"}}>Search Results</h2>
+    <h2>Search Results</h2>
     <div style={style.resultsContainer}>
     {results.map((result) => (
-        <div key={result.id} >
-           <div style={{ ...style.photoHolder }}>
-            <div style={style.crop}>
-            <Link to={`/categories/${result.category_id}/products/${result.id}`}>
-              <Image src={result.main_image} alt={result.title} size="small" />
-              </Link>
-              </div>
-              </div>
-        <div style={style.informationContainer}>
-        <div>
-            <Link to={`/categories/${result.category_id}/products/${result.id}`} style={{color: "black"}}>
-            <h4 style={{ margin: "5px", }}>
-                  {"$" + result.price}
+        <div key={result.id} style={{marginRight: "20px"}}  >
+          <Link to={`/categories/${result.category_id}/products/${result.id}`}>
+            <RoundImage 
+              src={result.main_image}
+              height="200px"
+              width="200px"
+              style={{marginRight: "20px"}}
+              media={style.imageMedia}
+            />
+          </Link>
+          <div style={style.informationContainer}>
+            <div>
+              <Link to={`/categories/${result.category_id}/products/${result.id}`} style={{color: "black"}}>
+                <h4 style={{ margin: "5px", }}>
+                  {"$" + result.price + " " + result.title}
                 </h4>
-                <h5 style={{ margin: "5px",  }}>
-                  {result.title}
-                </h5>
-            </Link>
+              </Link>
+            </div>
+          </div> 
         </div>
-        </div> 
-       </div>
     ))}
-     </div>
-    
-     </>
+    </div>
+    </>
   );
 
 
@@ -89,12 +86,12 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
           <div style={style.informationContainer}>
             <div>
               <Link to={`/categories/${cat_id}/products/${product.id}`}>
-                <h3 style={{ margin: "5px", display: "inline", color: "black", }}>
+                <h4 style={{ margin: "5px", display: "inline", color: "black", }}>
                   {"$" + product.price}
-                </h3>
-                <h5 style={{ margin: "5px", display: "inline", color: "black" }}>
+                </h4>
+                <h4 style={{ margin: "5px", display: "inline", color: "black" }}>
                   {product.title}
-                </h5>
+                </h4>
               </Link>
             </div>
           </div>
@@ -104,20 +101,16 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
     </Grid >
   );
 
-  const sortItems = type => {
+  const sortItems = (items, type) => {
+    let sorted = [];
     if (type == 'highPrice') {
-      const sorted = [...items].sort((a, b) => a.price > b.price ? -1 : 1);
-      setItems(sorted);
+      sorted = items.sort((a, b) => a.price > b.price ? -1 : 1);
     } else if (type == 'lowPrice') {
-      const sorted = [...items].sort((a, b) => a.price > b.price ? 1 : -1);
-      setItems(sorted);
+      sorted = items.sort((a, b) => a.price > b.price ? 1 : -1);
     } else {
-      const sorted = [...items].sort((a, b) => {
-        a = new Date(a.created_at);
-        b = new Date(b.created_at);
-        return a > b ? 1 : -1;
-      });
+      sorted = items;
     };
+    setItems(sorted);
   };
 
   if (noHeader) {
@@ -127,18 +120,17 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
       <>
         <div className="image-container">
           <Image src={BlueHeader} style={{ width: "100%" }} />
-          <div className="centered">
+          <HeaderContent className="centered">
             <CatName>{category && category.name}</CatName>
-            <br/>
             <FunctionalSearch afterSearch={setResults} category_id={cat_id} />
-            <h4 style={{marginLeft: "-350px"}}>Price</h4>
+            <h4 >Price</h4>
             <select style={style.sort} onChange={ (e) => setSortType(e.target.value) }>
               <option value='default' defaultValue > Sort by </option>
               <option value='highPrice'>Highest to Lowest</option>
               <option value='lowPrice'>Lowest to Highest</option>
             </select>
             <Image src={Arrow} style={style.arrow} className= "filter-white"></Image>
-          </div>
+          </HeaderContent>
         </div>
 
         <div style={style.container}>
@@ -189,7 +181,7 @@ const style = {
     width: '100%',
     height: "100%",
     justifyContent:"left",
-    marginLeft: "2.5%",
+    marginBottom: "70px",
   },
   container: {
     margin: "2% 11%",
@@ -198,20 +190,19 @@ const style = {
   resultsContainer: {
     display: "flex",
     flexWrap: "wrap",
-    marginLeft: "120px",
     marginTop: "5%",
     marginBottom: "5%",
     justifyContent: "flex-start",
   },
   sort: {
-    backgroundColor: "#4901DB",
+    backgroundColor: "transparent",
+    boxShadow: "-2px -2px 10px rgba(255,255,255,0.2), 2px 2px 10px rgba(0,0,0,0.2)",
     width: "80px",
     height: "40px",
     color: "white",
     textDecoration: "none",
     webkitAppearance: "none",
     mozAppearance: "none",
-    marginLeft: "-265px",
     border: "none",
     filter: "brightness(0.9)",
     padding: "10px",
@@ -221,7 +212,7 @@ const style = {
     width: "12px",
     position: "absolute",
     display: "inline-block",
-    left: "93px",
+    left: "63px",
     top: "153px",
   },
   option: {
@@ -233,7 +224,13 @@ const style = {
     height: "25%",
     // margin: "50px",
     // padding: "5px",
-  }
+  },
+  imageMedia: `
+    @media (max-width: 900px) {
+      height: 125px;
+      width: 125px;
+    }
+  `
 }
 
 const Truncated = styled.div `
@@ -242,13 +239,22 @@ const Truncated = styled.div `
   overflow: hidden;
   text-overflow: ellipsis;
 `
+
+const HeaderContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`
+
 const CatName = styled.div`{
   font-size: 4vw;
-    font-weight:bold; 
+  font-weight:bold; 
+  margin-bottom: 30px;
+
   @media(max-width: 900px) {
-    font-size: 5vw;
-    margin-bottom: '7%' 
-    }
+    font-size: 3vw;
+    margin-bottom: 20px;
+  }
 }
 `
 

@@ -4,6 +4,7 @@ import { Card, Image, } from "semantic-ui-react";
 import DynamicCategory from "./DynamicCategory";
 import BlueHeader from '../images/BlueHeader2.svg';
 import FunctionalSearch from './SharedComponents/FunctionalSearch';
+import RoundImage from './SharedComponents/RoundImage';
 import { Link, } from 'react-router-dom';
 import styled from 'styled-components'
 
@@ -27,7 +28,7 @@ export default class Products extends Component {
       const category = c.name;
       return (
         <Card.Group key={c.id}>
-          <h2 style={{marginLeft:"100px"}}>{category}</h2>
+          <h2 style={{marginBottom:"35px"}}>{category}</h2>
           <br/>
           <DynamicCategory category_id={c.id} category_name={c.name} noHeader />
         </Card.Group>
@@ -39,34 +40,36 @@ export default class Products extends Component {
 
   renderResults = () => (
     <>
-    <h2>Search Results</h2>
+    <h2 style={{marginLeft: "0px"}}>Search Results</h2>
     <div style={style.resultsContainer}>
       {this.state.results.map((result) => (
         <div key={result.id}>
-             <div style={{ ...style.photoHolder }}>
-            <div style={style.crop}>
           <Link to={`/categories/${result.category_id}/products/${result.id}`}>
-            <Image src={result.main_image} alt={result.title} size="small"/>
-            </Link>
-            </div>
-        </div>
-        <div style={style.informationContainer}>
+          <RoundImage 
+              src={result.main_image}
+              height="200px"
+              width="200px"
+              style={{marginRight: "20px"}}
+              media={style.imageMedia}
+            />
+          </Link>
+          <div style={style.informationContainer}>
             <div>
-            <Link to={`/categories/${result.category_id}/products/${result.id}`} style={{color: "black"}}>
-            <h4 style={{ margin: "5px", }}>
+              <Link to={`/categories/${result.category_id}/products/${result.id}`} style={{color: "black"}}>
+                <h4 style={{ margin: "5px", }}>
                   {"$" + result.price}
                 </h4>
                 <h5 style={{ margin: "5px",  }}>
                   {result.title}
                 </h5>
-            </Link>
-          <br />
-        </div> 
-       </div>
-       </div>
-    ))}
-  </div> 
-  </>
+              </Link>
+              <br />
+            </div> 
+          </div>
+        </div>
+      ))}
+    </div> 
+    </>
   );
 
 
@@ -136,6 +139,12 @@ const style = {
     justifyContent: "space-between",
     marginTop: "5%",
   },
+  imageMedia: `
+    @media (max-width: 900px) {
+      height: 125px;
+      width: 125px;
+    }
+  `,
 }
 
 const AllMerch = styled.div`{
@@ -156,3 +165,6 @@ const Find = styled.div`{
     }
 }
 `
+ 
+  
+

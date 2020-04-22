@@ -15,7 +15,6 @@ const DynamicProduct = ({
   const [size, setSize] = useState("");
   const [showImage, setShowImage] = useState("");
   const [images, setImages] = useState([]);
-  const [category, setCategory] = useState("");
   const [items, setItems] = useState([]);
 
   // gets product on initial render
@@ -29,7 +28,7 @@ const DynamicProduct = ({
         setShowImage(res.data.main_image);
         sizeSelectorOptions(res.data);
       })
-      .catch(e => console.log(e));
+      .catch(console.log);
   }, []);
 
   // gets images on initial render
@@ -48,15 +47,12 @@ const DynamicProduct = ({
     setItems(sizes)
   };
 
-  const handleChange = e => {
-    return setSize(e);
-  };
-
   const imageGroup = () => {
+    console.log(showImage)
     return (
       <>
-        <Image src={showImage} style={style.roundedImage} />
-        <Image.Group>
+        <div style={style.roundedImage(showImage)}/>
+        <Image.Group style={style.imageGroup} >
           <Image
             src={product.main_image}
             style={style.altImage}
@@ -124,7 +120,7 @@ const DynamicProduct = ({
                   >
                     {items.map(({ label, value }) => (
                       <option key={value} value={value}>
-                        {label}
+                        {label === "noSize" ? "none" : label}
                       </option>
                     ))}
                   </select>
@@ -183,11 +179,28 @@ const style = {
     color: "rgba(255,255,255, 0.7)",
     width: "100px"
   },
-  roundedImage: {
-    borderRadius: "50px",
-    width: "500px",
-    height: "500px",
-    padding: "40px"
+  imageGroup: {
+    marginLeft: "40px",
+    display: "flex",
+    alignItems: "flex-start",
+  },
+  roundedImage: function(src) {
+    return {
+      borderRadius: "5px",
+      width: "300px",
+      height: "400px",
+      margin: "40px",
+      marginTop: "50px",
+      backgroundImage: `url(${src})`,
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "center",
+    }
+  },
+  altImage: {
+    borderRadius: "5px",
+    height: "75px",
+    width: "75px",
   },
   card: {
     height: "600px",
@@ -200,12 +213,6 @@ const style = {
     borderRadius: "25px",
     padding: "40px"
   },
-  altImage: {
-    borderRadius: "20px",
-    height: "100px",
-    width: "100px",
-    marginTop: "-25px"
-  },
   dropdown: {
     width: "460px",
     height: "40px",
@@ -215,7 +222,8 @@ const style = {
     webkitAppearance: "none",
     mozAppearance: "none",
     textIndent: "1px",
-    textOverflow: ""
+    textOverflow: "",
+    paddingLeft: "10px",
   },
   arrow: {
     backgroundColor: "#FFFFFF",
@@ -223,7 +231,7 @@ const style = {
     position: "absolute",
     display: "inline-block",
     left: "425px",
-    top: "42px"
+    top: "305px"
   }
 };
 
