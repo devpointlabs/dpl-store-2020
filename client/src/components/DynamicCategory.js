@@ -7,7 +7,6 @@ import FunctionalSearch from "./SharedComponents/FunctionalSearch";
 import styled from 'styled-components';
 import Products from "./Products";
 import Arrow from "../images/LineArrowDown.svg";
-
 const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
   const [items, setItems] = useState([]);
   const [category, setCategory] = useState(null);

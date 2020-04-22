@@ -47,11 +47,13 @@ class Cart extends React.Component {
             {cart.map(item => {
               return (
                 <Item key={`cartItem-${item.id}`}>
+                  <div style={{display:'flex', justifyContent:'center'}}>
                   <PhotoHolder >
                     <div style={style.crop}>
                       <Image style={style.photo} src={`${item.object.main_image}`} />
                     </div>
                   </PhotoHolder>
+                  </div>
 
                   <div style={style.informationContainer}>
                     <div>

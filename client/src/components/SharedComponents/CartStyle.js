@@ -85,15 +85,8 @@ export const ItemsContainer = styled.div`{
 }`
 
 export const Item = styled.div`{
-    width: 48%;
+    width: 300px;
     margin:1%;
-  @media(max-width: 500px) {
-    width: 100%;
-    margin-top:3%;
-  }
-  @media(min-width: 1200px) {
-    width: 31%;
-  }
 }`
 
 export const PhotoHolder = styled.div`{
@@ -105,28 +98,7 @@ export const PhotoHolder = styled.div`{
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0px 3px 10px #cccccc;
-  height:350px;
-  @media(max-width: 600px) {
-    background: #fff;
-    vertical-align: top;
-    width: 100%;
-    margin-right: .5em;
-    margin-bottom: .3em;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0px 3px 10px #cccccc;
-    height:250px;
-  }
-  @media(min-width: 1200px) {
-    background: #fff;
-    vertical-align: top;
-    width: 100%;
-    margin-right: .5em;
-    margin-bottom: .3em;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0px 3px 10px #cccccc;
-    height:350px;
-  }
+  height:300px;
+  display: "inline-block",
 }
 `
