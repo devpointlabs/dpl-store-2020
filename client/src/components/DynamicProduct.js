@@ -57,6 +57,8 @@ const DynamicProduct = ({
             src={product.main_image}
             style={style.altImage}
             onClick={() => pickShowImage(product.main_image)}
+            onMouseEnter={() => pickShowImage(product.main_image)}
+
           />
           {images.slice(0, 3).map(image => {
             if (image.url === null) {
@@ -68,6 +70,7 @@ const DynamicProduct = ({
                     style={style.altImage}
                     src={image.url}
                     onClick={() => pickShowImage(image.url)}
+                    onMouseEnter={() => pickShowImage(image.url)}
                   />
                 </>
               );

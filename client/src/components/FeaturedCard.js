@@ -31,7 +31,6 @@ export default FeaturedCard;
 
 const style = {
   photo: {
-    // borderRadius: '10px',
     display: "block",
     minWidth: "100%",
     minHeight: "100%",

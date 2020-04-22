@@ -1,10 +1,12 @@
 import React from 'react';
 import PurchaseRecordForm from './Forms/PurchaseRecordForm';
-import { Button, Header, Dimmer, Loader } from 'semantic-ui-react';
+import { Button, Header, Dimmer, Loader, ItemContent } from 'semantic-ui-react';
 import { getAllCartItems } from '../modules/CartFunctions';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 import { CartConsumer, } from "../providers/CartProvider";
+import styled from 'styled-components'
+
 
 
 class PurchaseRecord extends React.Component {
@@ -31,14 +33,15 @@ class PurchaseRecord extends React.Component {
     }
   };
 
+  
 
   handleSubmit = (e) => {
     if (this.state.validEmail === true) {
-      this.setState({loading:true})
+      this.setState({ loading: true })
       let cart = getAllCartItems()
       var name = `${this.state.first_name}${this.state.last_name}`
       var products = []
-      cart.forEach(product => products.push({ title: product.object.title, size: product.size, price:product.object.price }))
+      cart.forEach(product => products.push({ title: product.object.title, size: product.size, price: product.object.price }))
       const { email_address, total } = this.state
       axios.post('/api/purchase_records', (this.state)).then(res => {
         this.createPurchaseProducts(res.data.id)
@@ -47,7 +50,7 @@ class PurchaseRecord extends React.Component {
       })
 
       axios.get(`/api/contact?name=${name}&email=${email_address}&subject=DevStore Receipt&total=${total}&products=${JSON.stringify(products)}`)
-        .then(res => { this.setState({ showForm: false, loading:false }) })
+        .then(res => { this.setState({ showForm: false, loading: false }) })
         .catch(e => console.log(e))
 
     }
@@ -89,7 +92,7 @@ class PurchaseRecord extends React.Component {
   getAllCartItems = () => {
     let cart = getAllCartItems()
     return (
-      <div style={style.itemsContainer}>
+      <ItemsContainer>
         <div style={style.itemsHeader}><h3>Your Items </h3></div>
         <div style={style.itemsContent}>
           {cart.map((product) => (
@@ -107,7 +110,7 @@ class PurchaseRecord extends React.Component {
             <h2>Total: ${this.state.total}</h2>
           </div>
         </div>
-      </div>
+      </ItemsContainer>
     )
   }
 
@@ -122,39 +125,40 @@ class PurchaseRecord extends React.Component {
   }
 
   render() {
-    const { email_address, first_name, last_name, address_one, address_two, city, state, zip_code, showForm , loading} = this.state
+    const { email_address, first_name, last_name, address_one, address_two, city, state, zip_code, showForm, loading } = this.state
     if (this.state.total === 0) { this.addTotal() }
 
     return (
       <>
         {showForm ?
           <div>
-            <div style={style.headerContainer}>
+            <HeaderContainer>
               <Link to='/cart'><Button style={style.headerButton}>Back To Cart</Button></Link>
               <h1 style={style.header}>Checkout</h1>
-            </div>
-            <div style={style.purchaseContainer}>
+            </HeaderContainer>
+            <PurchaseContainer>
               {this.getAllCartItems()}
-              <PurchaseRecordForm
-                handleChange={this.handleChange}
-                handleSubmit={this.handleSubmit}
-                email_address={email_address}
-                first_name={first_name}
-                last_name={last_name}
-                address_one={address_one}
-                address_two={address_two}
-                city={city}
-                state={state}
-                zip_code={zip_code}
-              />
+              <FormContainer >
+                <PurchaseRecordForm
+                  handleChange={this.handleChange}
+                  handleSubmit={this.handleSubmit}
+                  email_address={email_address}
+                  first_name={first_name}
+                  last_name={last_name}
+                  address_one={address_one}
+                  address_two={address_two}
+                  city={city}
+                  state={state}
+                  zip_code={zip_code}
+                />
+              </FormContainer>
               <div>
-                {loading ? 
-                <Dimmer active blurring>
-                  <Loader size='huge'>Submitting Your Order...</Loader>
-                </Dimmer>: <></>}
+                {loading ?
+                  <Dimmer active blurring style={{minHeight: document.documentElement.scrollHeight}}>
+                    <Loader size='huge'>Submitting Your Order...</Loader>
+                  </Dimmer> : <></>}
               </div>
-            </div>
-            <div id='alert' style={{ display: 'none' }}>{this.state.alertMessage} </div>
+            </PurchaseContainer>
           </div>
           : <div>{this.renderCompleted()}</div>}
       </>
@@ -174,15 +178,45 @@ export class ConnectedPurchaseRecord extends React.Component {
   }
 }
 
+const ItemsContainer = styled.div`{
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px #d1d1d1;
+    margin-top: 3%;
+}
+`
+
+const FormContainer = styled.div`{
+  margin: 0;
+  @media(max-width: 600px) {
+    margin-top: 5%
+    }
+}
+`
+
+const PurchaseContainer = styled.div`{
+  margin: 0 15%;
+  @media(max-width: 900px) {
+    margin: 5% 3%;
+    }
+}
+`
+const HeaderContainer = styled.div`{
+  background-color:#4901DB;
+  color: white;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  @media(max-width: 900px) {
+    background-color:#4901DB;
+    color: white;
+    padding: 10px 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+`
+
 const style = {
-  purchaseContainer: {
-    margin: '0 15%'
-  },
-  itemsContainer: {
-    borderRadius: '10px',
-    boxShadow: '5px 5px 20px #d1d1d1',
-    marginTop: '3%',
-  },
   itemsHeader: {
     padding: '0',
     textAlign: 'center',
@@ -190,13 +224,6 @@ const style = {
     borderTopLeftRadius: '10px',
     borderTopRightRadius: '10px',
     backgroundColor: '#e3e3e3',
-  },
-  headerContainer: {
-    backgroundColor: '#4901DB',
-    color: 'white',
-    padding: '20px 50px',
-    display: 'flex',
-    justifyContent: 'space-between'
   },
   headerButton: {
     backgroundColor: 'rgba(0,0,0, 0.13)',
