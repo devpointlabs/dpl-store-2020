@@ -24,10 +24,10 @@ const Links = () => {
     ));
 
   return(
-    <>
+    <nav className="nav-bar">
       <Menu.Item as={Link} to={{pathname:"/allmerchandise"}}>All Products</Menu.Item>
       {renderLinks()}
-    </>
+    </nav>
   )
 };
 
