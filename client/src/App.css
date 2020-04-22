@@ -141,3 +141,7 @@
   text-indent: 1px;
   text-overflow: '';
 }
+
+.link {
+  color: black;
+}

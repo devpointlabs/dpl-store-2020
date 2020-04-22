@@ -3,6 +3,7 @@ import { Segment, Grid, Icon, Image } from "semantic-ui-react";
 import styled from 'styled-components';
 import Logo from '../images/dpl_logo.svg';
 import Pin from '../images/Pin.svg';
+import { Link } from 'react-router-dom'
 
 const Footer = () => (
     <div>
@@ -39,10 +40,10 @@ const Footer = () => (
         </ContactHolder>
       </StyledFooter>
       <div className="dpl-blue" align="right" style={{ padding: '.5%', color: 'white' }}>
-        <StyledP>
+        <p style={window.innerWidth < 900 ? {fontSize:'2vw'}: {fontSize:'1vw'}}>
           <Image align="left" size={window.innerWidth < 900 ? 'tiny' : 'small'} src={Logo} className="filter-white"/>
-          2020 DevPoint Labs Terms Policy
-          </StyledP>
+          <Icon name="copyright outline" fitted inverted size={window.innerWidth < 900 ? '14px' : '16px'} /> 2020 DevPoint Labs <Link to='/terms' style={{color: "white"}}>Terms</Link> <Link to='/policy' style={{color: "white"}}>Policy</Link>
+          </p>
       </div>
     </div>
   
