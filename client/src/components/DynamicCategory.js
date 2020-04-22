@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Image, Grid, Card } from "semantic-ui-react";
+import { Image, Grid, } from "semantic-ui-react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import BlueHeader from "../images/BlueHeader2.svg";
@@ -120,17 +120,17 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
       <>
         <div className="image-container">
           <Image src={BlueHeader} style={{ width: "100%" }} />
-          <div className="centered">
-            <h1 className="large-header">{category && category.name}</h1>
+          <HeaderContent className="centered">
+            <CatName>{category && category.name}</CatName>
             <FunctionalSearch afterSearch={setResults} category_id={cat_id} />
-            <h4 style={{marginLeft: "-350px"}}>Price</h4>
+            <h4 >Price</h4>
             <select style={style.sort} onChange={ (e) => setSortType(e.target.value) }>
               <option value='default' defaultValue > Sort by </option>
               <option value='highPrice'>Highest to Lowest</option>
               <option value='lowPrice'>Lowest to Highest</option>
             </select>
             <Image src={Arrow} style={style.arrow} className= "filter-white"></Image>
-          </div>
+          </HeaderContent>
         </div>
 
         <div style={style.container}>
@@ -193,14 +193,14 @@ const style = {
     justifyContent: "flex-start",
   },
   sort: {
-    backgroundColor: "#4901DB",
+    backgroundColor: "transparent",
+    boxShadow: "-2px -2px 10px rgba(255,255,255,0.2), 2px 2px 10px rgba(0,0,0,0.2)",
     width: "80px",
     height: "40px",
     color: "white",
     textDecoration: "none",
     webkitAppearance: "none",
     mozAppearance: "none",
-    marginLeft: "-265px",
     border: "none",
     filter: "brightness(0.9)",
     padding: "10px",
@@ -210,8 +210,8 @@ const style = {
     width: "12px",
     position: "absolute",
     display: "inline-block",
-    left: "93px",
-    top: "205px",
+    left: "63px",
+    top: "153px",
   },
   option: {
     backgroundColor: "white",
@@ -270,6 +270,25 @@ const Truncated = styled.div `
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-`;
+`
+
+const HeaderContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`
+
+const CatName = styled.div`{
+  font-size: 4vw;
+  font-weight:bold; 
+  margin-bottom: 30px;
+
+  @media(max-width: 900px) {
+    font-size: 3vw;
+    margin-bottom: 20px;
+  }
+}
+`
+
 
 export default DynamicCategory;

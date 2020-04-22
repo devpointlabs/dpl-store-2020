@@ -8,6 +8,7 @@ import { getAllCartItems } from '../modules/CartFunctions'
 import { CartConsumer, } from "../providers/CartProvider";
 
 
+
 const getWidth = () => {
   const isSSR = typeof window === 'undefined'
 
@@ -204,5 +205,7 @@ export class ConnectedHomepageLayout extends React.Component {
     )
   }
 }
+
+
 
 export default ConnectedHomepageLayout;
