@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import BlueHeader from "../images/BlueHeader2.svg";
 import FunctionalSearch from "./SharedComponents/FunctionalSearch";
 import FeaturedProducts from "./FeaturedProducts";
+import RoundImage from './SharedComponents/RoundImage';
 import axios from "axios";
 import CategoriesLinks from "./CategoriesLinks";
 
@@ -15,34 +16,33 @@ const HomepageLayout = () => {
 
   const renderResults = () => (
     <div style={style.searchContainer}>
-    <h2 >Search Results</h2>
-    <div style={style.resultsContainer}>
-    {results.map((result) => (
-      <div key={result.id}>
-       <div style={{ ...style.photoHolder }}>
-            <div style={style.crop}>
-          <Link to={`/categories/${result.category_id}/products/${result.id}`}>
-            <Image src={result.main_image} alt={result.title} size="small"/>
+      <h2 style={{marginLeft: "0px"}}>Search Results</h2>
+      <div style={style.resultsContainer}>
+        {results.map((result) => (
+          <div key={result.id}>
+            <Link to={`/categories/${result.category_id}/products/${result.id}`}>
+              <RoundImage 
+                src={result.main_image}
+                height="200px"
+                width="200px"
+                style={{marginRight: "20px"}}
+                media={style.imageMedia}
+              />
             </Link>
+            <div style={style.informationContainer}>
+              <div>
+                <Link to={`/categories/${result.category_id}/products/${result.id}`} style={{color: "black"}}>
+                  <h4 style={{ margin: "5px", }}>
+                    {"$" + result.price + " " + result.title}
+                  </h4>
+                </Link>
+                <br />
+              </div> 
             </div>
-        </div>
-        <div style={style.informationContainer}>
-            <div>
-            <Link to={`/categories/${result.category_id}/products/${result.id}`} style={{color: "black"}}>
-            <h4 style={{ margin: "5px", }}>
-                  {"$" + result.price}
-                </h4>
-                <h5 style={{ margin: "5px",  }}>
-                  {result.title}
-                </h5>
-            </Link>
-          <br />
-        </div> 
-       </div>
-       </div>
-    ))}
-  </div> 
-  </div>
+          </div>
+        ))}
+      </div> 
+    </div>
   );
 
   return (
@@ -63,8 +63,6 @@ const HomepageLayout = () => {
         </div>
         <div style={style.categoryLinks}>
           <CategoriesLinks />
-          <br />
-          <br />
         </div>
       </div>
       <div align="center">
@@ -92,7 +90,7 @@ const style = {
     display: "flex",
     flexWrap: "wrap",
     marginTop: "10%",
-    marginBottom: "15%",
+    marginBottom: "30px",
     float: "left",
     width: "100%"
   },
@@ -100,11 +98,10 @@ const style = {
     display: "flex",
     flexWrap: "wrap",
     alignItems: 'left',
-    marginTop: "2%",
-    margin: "5%"
+    marginTop: "2px",
   },
   searchContainer: {
-    marginTop: "5%"
+    marginTop: "5px"
   },
   crop: {
     height: "100%",
@@ -126,6 +123,12 @@ const style = {
     justifyContent: "space-between",
     marginTop: "5%",
   },
+  imageMedia: `
+    @media (max-width: 900px) {
+      height: 125px;
+      width: 125px;
+    }
+  `
 }
 
 export default HomepageLayout;
