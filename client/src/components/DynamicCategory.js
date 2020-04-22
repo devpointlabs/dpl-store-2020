@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Card, Image, Grid, } from "semantic-ui-react";
+import { Image, Grid, Card } from "semantic-ui-react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import BlueHeader from "../images/BlueHeader2.svg";
 import FunctionalSearch from "./SharedComponents/FunctionalSearch";
 import styled from 'styled-components';
 import Products from "./Products";
+import Arrow from "../images/LineArrowDown.svg";
 
 const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
   const [items, setItems] = useState([]);
@@ -40,21 +41,35 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
   }, [cat_id]);
 
   const renderResults = () => (
-    <div style={style.container}>
-      <h2 >Search Results</h2>
-      <div style={style.resultsContainer}>
-        {results.map((result) => (
-          <div key={result.id}>
+    <>
+    <h2 style={{marginLeft: "120px"}}>Search Results</h2>
+    <div style={style.resultsContainer}>
+    {results.map((result) => (
+        <div key={result.id} >
+           <div style={{ ...style.photoHolder }}>
+            <div style={style.crop}>
             <Link to={`/categories/${result.category_id}/products/${result.id}`}>
               <Image src={result.main_image} alt={result.title} size="small" />
-              <Card.Header style={style.Text}>{result.title}</Card.Header>
-              <Card.Meta style={style.Text}>${result.price}</Card.Meta>
+              </Link>
+              </div>
+              </div>
+        <div style={style.informationContainer}>
+        <div>
+            <Link to={`/categories/${result.category_id}/products/${result.id}`} style={{color: "black"}}>
+            <h4 style={{ margin: "5px", }}>
+                  {"$" + result.price}
+                </h4>
+                <h5 style={{ margin: "5px",  }}>
+                  {result.title}
+                </h5>
             </Link>
-            <br />
-          </div>
-        ))}
-      </div>
-    </div>
+        </div>
+        </div> 
+       </div>
+    ))}
+     </div>
+    
+     </>
   );
 
 
@@ -74,12 +89,12 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
           <div style={style.informationContainer}>
             <div>
               <Link to={`/categories/${cat_id}/products/${product.id}`}>
-                <h3 style={{ margin: "5px", display: "inline", color: "black", }}>
+                <h4 style={{ margin: "5px", display: "inline", color: "black", }}>
                   {"$" + product.price}
-                </h3>
-                <h5 style={{ margin: "5px", display: "inline", color: "black" }}>
+                </h4>
+                <h4 style={{ margin: "5px", display: "inline", color: "black" }}>
                   {product.title}
-                </h5>
+                </h4>
               </Link>
             </div>
           </div>
@@ -115,12 +130,13 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
           <div className="centered">
             <h1 className="large-header">{category && category.name}</h1>
             <FunctionalSearch afterSearch={setResults} category_id={cat_id} />
-            <h4>Sort By</h4>
-            <select onChange={(e) => setSortType(e.target.value)}>
-              <option value='default' defaultValue> -- Default View -- </option>
-              <option value='highPrice'>Price - Highest to Lowest</option>
-              <option value='lowPrice'>Price - Lowest to Highest</option>
+            <h4 style={{marginLeft: "-350px"}}>Price</h4>
+            <select style={style.sort} onChange={ (e) => setSortType(e.target.value) }>
+              <option value='default' defaultValue > Sort by </option>
+              <option value='highPrice'>Highest to Lowest</option>
+              <option value='lowPrice'>Lowest to Highest</option>
             </select>
+            <Image src={Arrow} style={style.arrow} className= "filter-white"></Image>
           </div>
         </div>
 
@@ -178,10 +194,35 @@ const style = {
   },
   resultsContainer: {
     display: "flex",
-    justifyContent: "center",
     flexWrap: "wrap",
-    marginTop: "2%",
-    margin: "5%",
+    marginLeft: "120px",
+    marginTop: "5%",
+    marginBottom: "5%",
+    justifyContent: "flex-start",
+  },
+  sort: {
+    backgroundColor: "#4901DB",
+    width: "80px",
+    height: "40px",
+    color: "white",
+    textDecoration: "none",
+    webkitAppearance: "none",
+    mozAppearance: "none",
+    marginLeft: "-265px",
+    border: "none",
+    filter: "brightness(0.9)",
+    padding: "10px",
+    borderRadius: "15px",
+  },
+  arrow: {
+    width: "12px",
+    position: "absolute",
+    display: "inline-block",
+    left: "93px",
+    top: "205px",
+  },
+  option: {
+    backgroundColor: "white",
   },
   product: {
     // display: "block",
@@ -226,4 +267,11 @@ const PhotoHolder = styled.div`{
   }
 }
 `
+const Truncated = styled.div `
+  width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
 export default DynamicCategory;

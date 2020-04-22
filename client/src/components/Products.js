@@ -38,19 +38,35 @@ export default class Products extends Component {
 
 
   renderResults = () => (
-    <div style={style.container}>
-      <h2 >Search Results</h2>
-      <div style={style.resultsContainer}>
+    <>
+    <h2 style={{marginLeft: "95px"}}>Search Results</h2>
+    <div style={style.resultsContainer}>
       {this.state.results.map((result) => (
         <div key={result.id}>
-            <Image src={result.main_image} alt={result.title} size="small" as={Link} to={`/categories/${result.category_id}/products/${result.id}`}/>
-            <Card.Header>{result.title}</Card.Header>
-            <Card.Meta>${result.price}</Card.Meta>
-            <br />
+             <div style={{ ...style.photoHolder }}>
+            <div style={style.crop}>
+          <Link to={`/categories/${result.category_id}/products/${result.id}`}>
+            <Image src={result.main_image} alt={result.title} size="small"/>
+            </Link>
+            </div>
+        </div>
+        <div style={style.informationContainer}>
+            <div>
+            <Link to={`/categories/${result.category_id}/products/${result.id}`} style={{color: "black"}}>
+            <h4 style={{ margin: "5px", }}>
+                  {"$" + result.price}
+                </h4>
+                <h5 style={{ margin: "5px",  }}>
+                  {result.title}
+                </h5>
+            </Link>
+          <br />
         </div> 
-      ))}
-    </div> 
-    </div>
+       </div>
+       </div>
+    ))}
+  </div> 
+  </>
   );
 
 
@@ -94,9 +110,30 @@ const style = {
   },
   resultsContainer: {
     display: "flex",
-    justifyContent: "center",
     flexWrap: "wrap",
-    marginTop: "2%",
-    margin: "5%",
+    marginTop: "5%",
+    marginBottom: "5%",
+    justifyContent: "flex-start",
+    marginLeft: "95px",
+  },
+  crop: {
+    height: "100%",
+    overflow: "hidden",
+    position: "relative",
+  },
+  photoHolder: {
+    background: "#fff",
+    display: "inline-block",
+    verticalAlign: "top",
+    marginRight: ".5em",
+    marginBottom: ".3em",
+    borderRadius: "15px",
+    overflow: "hidden",
+    boxShadow: "0px 3px 10px #cccccc",
+  },
+  informationContainer: {
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: "5%",
   },
 }

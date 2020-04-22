@@ -1,3 +1,5 @@
+import styled from 'styled-components'
+
 export const style = {
   button: {
     color: 'white',
@@ -29,17 +31,13 @@ export const style = {
     margin: '0px',
     fontSize: '2em'
   },
-  itemsContainer: {
-    margin: '3% 20%',
-    marginBottom:'10%',
-  },
   cartContainer: {
     display: 'flex',
     margin: '0px',
     alignItems: 'stretch',
-    justifyContent: 'center',
     flexWrap: 'wrap',
-    marginBottom: '1%'
+    marginBottom: '1%',
+    justifyContent:'center'
   },
   photo: {
     display: 'block',
@@ -57,17 +55,6 @@ export const style = {
     overflow: 'hidden',
     position: 'relative',
   },
-  photoHolder: {
-    background: '#fff',
-    display: 'inline-block',
-    verticalAlign: 'top',
-    width: '100%',
-    marginRight: '.5em',
-    marginBottom: '.3em',
-    borderRadius: '5px',
-    overflow: 'hidden',
-    boxShadow: '0px 3px 10px #cccccc',
-  },
   informationContainer: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -82,27 +69,66 @@ export const style = {
     textAlign:'center',
     borderRadius:'5px ',
     cursor:'pointer'
-  },
-  item: {
-    width: '30%',
-    margin:'1%'
   }
 }
 
-export const mobile ={
-  removeButton: {
-    width: '100%',
-    backgroundColor: 'whitesmoke',
-    color: '#990000',
-    marginTop: '2%',
-    padding:'2%',
-    textAlign:'center',
-    borderRadius:'5px ',
-    cursor:'pointer'
-  },
-  item: {
-    width: '80%',
-    margin:'1%'
+export const ItemsContainer = styled.div`{
+  margin: 5% 5%;
+  margin-bottom:10%;
+  @media(min-width: 1200px) {
+    margin: 3% 15%;
+    margin-bottom:10%;
   }
+  @media(max-width: 500px) {
+    margin:5% 5%;
+    margin-bottom:10%;
+  }
+}`
 
+export const Item = styled.div`{
+    width: 48%;
+    margin:1%;
+  @media(max-width: 500px) {
+    width: 100%;
+    margin-top:3%;
+  }
+  @media(min-width: 1200px) {
+    width: 30%;
+    margin:1%;
+  }
+}`
+
+export const PhotoHolder = styled.div`{
+  background: #fff;
+  vertical-align: top;
+  width: 100%;
+  margin-right: .5em;
+  margin-bottom: .3em;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0px 3px 10px #cccccc;
+  height:350px;
+  @media(max-width: 600px) {
+    background: #fff;
+    vertical-align: top;
+    width: 100%;
+    margin-right: .5em;
+    margin-bottom: .3em;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 3px 10px #cccccc;
+    height:250px;
+  }
+  @media(min-width: 1200px) {
+    background: #fff;
+    vertical-align: top;
+    width: 100%;
+    margin-right: .5em;
+    margin-bottom: .3em;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 3px 10px #cccccc;
+    height:400px;
+  }
 }
+`

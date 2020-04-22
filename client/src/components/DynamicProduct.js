@@ -15,7 +15,6 @@ const DynamicProduct = ({
   const [size, setSize] = useState("");
   const [showImage, setShowImage] = useState("");
   const [images, setImages] = useState([]);
-  const [category, setCategory] = useState("");
   const [items, setItems] = useState([]);
 
   // gets product on initial render
@@ -48,10 +47,6 @@ const DynamicProduct = ({
     setItems(sizes)
   };
 
-  const handleChange = e => {
-    return setSize(e);
-  };
-
   const imageGroup = () => {
     return (
       <>
@@ -61,6 +56,8 @@ const DynamicProduct = ({
             src={product.main_image}
             style={style.altImage}
             onClick={() => pickShowImage(product.main_image)}
+            onMouseEnter={() => pickShowImage(product.main_image)}
+
           />
           {images.slice(0, 3).map(image => {
             if (image.url === null) {
@@ -72,6 +69,7 @@ const DynamicProduct = ({
                     style={style.altImage}
                     src={image.url}
                     onClick={() => pickShowImage(image.url)}
+                    onMouseEnter={() => pickShowImage(image.url)}
                   />
                 </>
               );
@@ -122,10 +120,6 @@ const DynamicProduct = ({
                     style={style.dropdown}
                     onChange={e => setSize(e.currentTarget.value)}
                   >
-                    <option disabled="disabled" selected="selected" display="none">
-                      {" "}
-                      -- select a size --{" "}
-                    </option>
                     {items.map(({ label, value }) => (
                       <option key={value} value={value}>
                         {label}
