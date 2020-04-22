@@ -34,7 +34,6 @@ export const style = {
   cartContainer: {
     display: 'flex',
     margin: '0px',
-    alignItems: 'stretch',
     flexWrap: 'wrap',
     marginBottom: '1%',
     justifyContent:'center'
@@ -76,7 +75,7 @@ export const ItemsContainer = styled.div`{
   margin: 5% 5%;
   margin-bottom:10%;
   @media(min-width: 1200px) {
-    margin: 3% 15%;
+    margin: 3% 10%;
     margin-bottom:10%;
   }
   @media(max-width: 500px) {
@@ -93,8 +92,7 @@ export const Item = styled.div`{
     margin-top:3%;
   }
   @media(min-width: 1200px) {
-    width: 30%;
-    margin:1%;
+    width: 31%;
   }
 }`
 
@@ -128,7 +126,7 @@ export const PhotoHolder = styled.div`{
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0px 3px 10px #cccccc;
-    height:400px;
+    height:350px;
   }
 }
 `

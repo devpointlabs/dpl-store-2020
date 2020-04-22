@@ -39,14 +39,12 @@ class Cart extends React.Component {
   }
 
   renderCartItems = () => {
-    const { cart, total ,pictureHeight} = this.state
+    const { cart, total} = this.state
     if (cart.length > 0) {
       return (
         <ItemsContainer>
           <div style={style.cartContainer}>
             {cart.map(item => {
-              let sizeColor = ''
-              if (item.size === 'noSize') { sizeColor = '#777' } else { sizeColor = '#777'}
               return (
                 <Item key={`cartItem-${item.id}`}>
                   <PhotoHolder >
@@ -58,7 +56,7 @@ class Cart extends React.Component {
                   <div style={style.informationContainer}>
                     <div>
                       <h3 style={{ margin: '0px',}}>{item.object.title}</h3>
-                      <h6 style={{ margin: '0px', color: sizeColor }}>{item.size}</h6>
+                      <h6 style={{ margin: '0px', color: '#777'}}>{item.size}</h6>
                     </div>
                     <div>
                       <h1>${item.object.price}</h1>
