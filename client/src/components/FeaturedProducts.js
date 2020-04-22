@@ -62,7 +62,7 @@ class FeaturedProducts extends React.Component {
         {showAllFeatured ? (
           <div style={style.productHolder}>
             {featuredProducts.map(product => (
-              <div key={`featured-${product.id}`}style={style.product}>
+              <div key={`featured-${product.id}`}style={style.product, style.Text}>
                 <FeaturedCard pictureHeight={pictureHeight} product={product} />
               </div>
             ))}
@@ -108,6 +108,12 @@ const style = {
   product: {
     width: "49%",
     margin: "1% 0"
+  },
+  Text: {
+    paddingTop: "15%",
+    color: "Black",
+    fontSize: "20px",
+    textAlign: "center"
   }
 };
 

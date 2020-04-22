@@ -16,14 +16,12 @@ const CategoriesLinks = () => {
       .catch(console.log);
   }, []);
 
-
   return (
     <>
      <Header as="h3" className="heading">
         CATEGORIES
       </Header>
     <Grid style={styles.Grid} computer={4} mobile={2}>
-     
         {categories.map(category => (
           <Grid.Column
             centered
@@ -59,7 +57,6 @@ const styles = {
     height: "100%",
   },
   GridItem:{
-    // padding:"40px",
     width: "25%",
     height: "20%",
     marginTop:"25px",
@@ -67,7 +64,6 @@ const styles = {
   },
   Text:{
     paddingTop: "15%",
-    // textAlign: "left",
     color: "Black",
     fontSize: "20px",
     textAlign: "center"

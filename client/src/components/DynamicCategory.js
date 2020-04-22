@@ -46,8 +46,8 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
           <div key={result.id}>
             <Link to={`/categories/${result.category_id}/products/${result.id}`}>
               <Image src={result.main_image} alt={result.title} size="small" />
-              <Card.Header >{result.title}</Card.Header>
-              <Card.Meta>${result.price}</Card.Meta>
+              <Card.Header style={style.Text}>{result.title}</Card.Header>
+              <Card.Meta style={style.Text}>${result.price}</Card.Meta>
             </Link>
             <br />
           </div>
@@ -73,10 +73,10 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
           <div style={style.informationContainer}>
             <div>
               <Link to={`/categories/${cat_id}/products/${product.id}`}>
-                <h3 style={{ margin: "5px", display: "inline" }}>
+                <h3 style={{ margin: "5px", display: "inline", color: "black", }}>
                   {"$" + product.price}
                 </h3>
-                <h5 style={{ margin: "5px", display: "inline" }}>
+                <h5 style={{ margin: "5px", display: "inline", color: "black" }}>
                   {product.title}
                 </h5>
               </Link>
@@ -198,6 +198,12 @@ const style = {
   product: {
     width: "275px",
     margin: "1% 2%"
+  },
+  Text: {
+    paddingTop: "15%",
+    color: "Black",
+    fontSize: "20px",
+    textAlign: "center"
   }
 };
 
