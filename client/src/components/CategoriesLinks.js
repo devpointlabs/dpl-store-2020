@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Grid, Image, Header } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import Featured from "../images/blank.png";
 
 const CategoriesLinks = () => {
   const [categories, setCategories] = useState([]);
@@ -15,18 +14,6 @@ const CategoriesLinks = () => {
       })
       .catch(console.log);
   }, []);
-  
-  const renderLinks = () =>
-    categories.map( (category) => (
-      <div key={`${category.id}`}>
-        <Link style={{color:'black'}}>
-        <Grid.Column to={`/categories/${category.id}/products`}>
-          <Image src={category.image} alt={category.name} style={styles.image}/>
-          <h4 align="center">{category.name}</h4>
-        </Grid.Column>
-        </Link>
-      </div>
-    ))
 
   return (
     <>

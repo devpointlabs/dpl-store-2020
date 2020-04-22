@@ -47,10 +47,6 @@ const DynamicProduct = ({
     setItems(sizes)
   };
 
-  const handleChange = e => {
-    return setSize(e);
-  };
-
   const imageGroup = () => {
     return (
       <>
@@ -121,10 +117,10 @@ const DynamicProduct = ({
                     style={style.dropdown}
                     onChange={e => setSize(e.currentTarget.value)}
                   >
-                    <option disabled="disabled" selected="selected" display="none">
+                    {/* <option disabled="disabled" selected="selected" display="none">
                       {" "}
                       -- select a size --{" "}
-                    </option>
+                    </option> */}
                     {items.map(({ label, value }) => (
                       <option key={value} value={value}>
                         {label}
