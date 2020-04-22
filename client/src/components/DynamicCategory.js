@@ -59,11 +59,11 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
 
 
   const renderItems = () => (
-    <div style={style.productContainer}>
+    <Grid style={style.productContainer} computer={3} mobile={2}>
       {items.map((product) => (
-        <div key={product.id} style={style.product}>
+        <Grid.Column key={product.id} style={style.product} computer={5} mobile={7}>
           <Link to={`/categories/${cat_id}/products/${product.id}`}>
-            <div style={{ ...style.photoHolder, height: '275px' }}>
+            <div style={style.photoHolder}>
               <div style={style.crop}>
                 <Image style={style.photo} src={`${product.main_image}`} />
               </div>
@@ -82,10 +82,10 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
               </Link>
             </div>
           </div>
-        </div>
+        </Grid.Column>
       ))
       }
-    </div >
+    </Grid >
   );
 
   const sortItems = type => {
@@ -137,15 +137,8 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
 
 const style = {
   photo: {
-    display: "block",
-    minWidth: "100%",
-    minHeight: "100%",
-    margin: " auto",
-    position: "absolute",
-    top: "-100%",
-    right: "-100%",
-    bottom: "-100%",
-    left: "-100%"
+    width:"100%",
+    height:"100%",
   },
   crop: {
     height: "100%",
@@ -154,7 +147,6 @@ const style = {
   },
   photoHolder: {
     background: "#fff",
-    display: "inline-block",
     verticalAlign: "top",
     width: "100%",
     marginRight: ".5em",
@@ -164,7 +156,6 @@ const style = {
     boxShadow: "0px 3px 10px #cccccc"
   },
   informationContainer: {
-    display: "flex",
     justifyContent: "space-between",
     marginTop: "5%",
   },
@@ -178,11 +169,10 @@ const style = {
     backgroundColor: "rgba(74,1,219, .03)",
   },
   productContainer: {
-    display: "flex",
-    marginLeft: "100px",
-    flexWrap: "wrap",
-    marginBottom: "5%",
-    width: '100%'
+    width: '100%',
+    height: "100%",
+    justifyContent:"left",
+    marginLeft: "2.5%",
   },
   container: {
     margin: "2% 11%",
@@ -196,15 +186,12 @@ const style = {
     margin: "5%",
   },
   product: {
-    width: "275px",
-    margin: "1% 2%"
-  },
-  Text: {
-    paddingTop: "15%",
-    color: "Black",
-    fontSize: "20px",
-    textAlign: "center"
+    // display: "block",
+    width: "25%",
+    height: "25%",
+    // margin: "50px",
+    // padding: "5px",
   }
-};
+}
 
 export default DynamicCategory;
