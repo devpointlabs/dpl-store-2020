@@ -45,9 +45,9 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
         {results.map((result) => (
           <div key={result.id}>
             <Link to={`/categories/${result.category_id}/products/${result.id}`}>
-              <Image src={result.main_image} alt={result.title} size="small" />
-              <Card.Header style={style.Text}>{result.title}</Card.Header>
-              <Card.Meta style={style.Text}>${result.price}</Card.Meta>
+              <Image src={result.main_image} alt={result.title} size="small" style={{color:'black'}}/>
+              <Card.Header style={{color:'black'}}>{result.title}</Card.Header>
+              <Card.Meta style={{color:'black'}}>${result.price}</Card.Meta>
             </Link>
             <br />
           </div>
@@ -73,12 +73,12 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
           <div style={style.informationContainer}>
             <div>
               <Link to={`/categories/${cat_id}/products/${product.id}`}>
-                <h3 style={{ margin: "5px", display: "inline", color: "black", }}>
+                <h4 style={{ margin: "5px", display: "inline", color: "black", }}>
                   {"$" + product.price}
-                </h3>
-                <h5 style={{ margin: "5px", display: "inline", color: "black" }}>
+                </h4>
+                <h4 style={{ margin: "5px", display: "inline", color: "black" }}>
                   {product.title}
-                </h5>
+                </h4>
               </Link>
             </div>
           </div>

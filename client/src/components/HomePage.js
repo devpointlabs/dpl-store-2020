@@ -26,8 +26,12 @@ const HomepageLayout = () => {
               as={Link}
               to={`/categories/${result.category_id}/products/${result.id}`}
             />
-            <Card.Header>{result.title}</Card.Header>
-            <Card.Meta>${result.price}</Card.Meta>
+            <Link to={`/categories/${result.category_id}/products/${result.id}`}>
+              <Card.Header style={{color:'black'}}>{result.title}</Card.Header>
+            </Link>
+            <Link to={`/categories/${result.category_id}/products/${result.id}`}>
+              <Card.Meta style={{color:'black'}}>${result.price}</Card.Meta>
+            </Link>
             <br />
           </div>
         ))}

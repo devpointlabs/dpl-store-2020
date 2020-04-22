@@ -43,9 +43,13 @@ export default class Products extends Component {
       <div style={style.resultsContainer}>
       {this.state.results.map((result) => (
         <div key={result.id}>
-            <Image src={result.main_image} alt={result.title} size="small" as={Link} to={`/categories/${result.category_id}/products/${result.id}`}/>
-            <Card.Header>{result.title}</Card.Header>
-            <Card.Meta>${result.price}</Card.Meta>
+            <Image src={result.main_image} alt={result.title} size="small" as={Link} to={`/categories/${result.category_id}/products/${result.id}`} style={{color:'black'}}/>
+            <Link to={`/categories/${result.category_id}/products/${result.id}`}>
+              <Card.Header style={{color:'black'}}>{result.title}</Card.Header>
+            </Link>
+            <Link to={`/categories/${result.category_id}/products/${result.id}`}>
+              <Card.Meta style={{color:'black'}}>${result.price}</Card.Meta>
+            </Link>
             <br />
         </div> 
       ))}
