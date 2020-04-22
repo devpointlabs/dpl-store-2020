@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Select, Button } from "semantic-ui-react";
+import { Form, Select, } from "semantic-ui-react";
 
 class SizeForm extends Component {
   state = {
