@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Form, Modal, Button, Icon } from "semantic-ui-react";
+import { Form, Modal, Button, Icon, Header } from "semantic-ui-react";
 import Dropzone from "react-dropzone";
 import axios from "axios";
+import {useHistory} from 'react-router-dom'
 
 class CategoryForm extends Component {
   state = {
@@ -9,7 +10,8 @@ class CategoryForm extends Component {
     image: "",
     id: null,
     modalOpen: false,
-    category: {}
+    category: {},
+    deleteConfirm: false
   };
 
   componentDidMount() {
@@ -34,6 +36,28 @@ class CategoryForm extends Component {
       image: category.image,
       id: category.id
     });
+  };
+  openDeleteConfirm = () =>{
+    this.setState({
+      deleteConfirm: true
+    })
+  }
+  closeDeleteConfirm = () => {
+    this.setState({
+      deleteConfirm: false
+    })
+  }
+  deleteCategory = () => {
+    axios.delete(`/api/categories/${this.state.id}`).then(res =>{
+      console.log(res)
+      useHistory().push('/adminpanel')
+      this.closeDeleteConfirm()
+      this.handleClose()
+    }).catch(e=>{
+      console.log(e)
+      alert("Error! There are Purchase Records with this category")
+    })
+  
   };
 
   categoryFormat = () => {
@@ -80,6 +104,16 @@ class CategoryForm extends Component {
               Cancel
             </Form.Button>
           </Form>
+          <Modal
+            open={this.state.deleteConfirm}
+            onClose={this.closeDeleteConfirm}
+            basic
+          >
+            {this.deleteModal()}
+          </Modal>
+          <Button negative onClick={this.openDeleteConfirm} style={styles.delete}>
+            delete category <Icon name="trash"/>
+          </Button>
         </div>
       </Modal.Content>
     );
@@ -98,35 +132,53 @@ class CategoryForm extends Component {
       .catch(e => console.log(e));
   };
 
-  editCategory = () => {
-    this.setCategory()
-  return(
+  deleteModal = () => (
     <>
-      <div
-        style={{
-          color: "#4575c4",
-          display: "flex",
-          cursor: "pointer"
-        }}
-      >
-        <h1>{this.state.name}</h1>
-        <Modal
-          trigger={
-            <div onClick={this.handleOpen} style={{}} as="td">
-              <h2>
-                <Icon name="edit" />
-              </h2>
-            </div>
-          }
-          open={this.state.modalOpen}
-          onClose={this.handleClose}
-        >
-          {this.categoryFormat()}
-        </Modal>
-      </div>
+    <Header icon='delete' content='Delete Category?' />
+    <Modal.Content>
+      <p>
+        Are you sure you would like to delete this category?
+      </p>
+    </Modal.Content>
+    <Modal.Actions>
+      <Button basic color='red' inverted onClick={this.closeDeleteConfirm}>
+        <Icon name='remove' /> No
+      </Button>
+      <Button color='green' inverted onClick={this.deleteCategory}>
+        <Icon name='checkmark' /> Yes
+      </Button>
+    </Modal.Actions>
     </>
   )
-        }
+
+  editCategory = () => {
+    return (
+      <>
+        <div
+          style={{
+            color: "#4575c4",
+            display: "flex",
+            cursor: "pointer"
+          }}
+        >
+          <h1>{this.state.name}</h1>
+          <Modal
+            trigger={
+              <div onClick={this.handleOpen} style={{}} as="td">
+                <h2>
+                  <Icon name="edit" />
+                </h2>
+              </div>
+            }
+            open={this.state.modalOpen}
+            onClose={this.handleClose}
+          >
+            {this.categoryFormat()}
+          </Modal>
+        </div>
+      </>
+    );
+  };
   newCategory = () => (
     <Modal
       trigger={
@@ -238,5 +290,9 @@ const styles = {
     width: "150px",
     padding: "2%",
     cursor: "pointer"
+  },
+  delete: {
+    marginTop: "10px",
+    padding: "10px"
   }
 };
