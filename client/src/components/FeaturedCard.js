@@ -14,7 +14,7 @@ const FeaturedCard = ({ product, pictureHeight }) => {
         </div>
       </Link>
       <Link to={`/categories/${cat_id}/products/${product.id}`}>
-      <div style={{ textAlign: "left" }}>
+      <div style={{ textAlign: "left", color: "black" }}>
         <div style={style.infoHolder}>
           <h4>${product.price}</h4>
         </div>

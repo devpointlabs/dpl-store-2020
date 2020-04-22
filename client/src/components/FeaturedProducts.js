@@ -108,7 +108,7 @@ const style = {
   product: {
     width: "49%",
     margin: "1% 0"
-  }
+  },
 };
 
 export default FeaturedProducts;
