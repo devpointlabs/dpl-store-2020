@@ -57,7 +57,7 @@ class Footer extends React.Component {
       <div className="dpl-blue" align="right" style={{ padding: '.5%', color: 'white' }}>
         <p style={isMobile ? {fontSize:'2vw'}: {fontSize:'1vw'}}>
           <Image align="left" size={isMobile ? 'tiny' : 'small'} src={Logo} className="filter-white"/>
-          2020 DevPoint Labs Terms Policy
+          <Icon name="copyright outline" fitted inverted size={isMobile ? '14px' : '16px'} /> 2020 DevPoint Labs Terms Policy
           </p>
       </div>
     </div>)

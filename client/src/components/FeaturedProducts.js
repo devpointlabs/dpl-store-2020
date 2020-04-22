@@ -98,6 +98,7 @@ const style = {
     color: "#4901DB",
     backgroundColor: "rgba(74,1,219, .03)",
     marginBottom: "5%",
+    marginTop: "2%",
   },
   productHolder: {
     display: "flex",

@@ -38,8 +38,9 @@ export default class Products extends Component {
 
 
   renderResults = () => (
-    <div style={style.container}>
-      <h2 >Search Results</h2>
+    <>
+    <h2 style={{marginLeft: "95px"}}>Search Results</h2>
+    <div style={style.resultsContainer}>
       <div style={style.resultsContainer}>
       {this.state.results.map((result) => (
         <div key={result.id}>
@@ -67,6 +68,7 @@ export default class Products extends Component {
     ))}
   </div> 
   </div>
+  </>
   );
 
 
@@ -111,9 +113,9 @@ const style = {
   resultsContainer: {
     display: "flex",
     flexWrap: "wrap",
-    alignItems: 'left',
-    marginTop: "2%",
-    margin: "5%",
+    marginTop: "5%",
+    marginBottom: "5%",
+    justifyContent: "flex-start",
   },
   crop: {
     height: "100%",

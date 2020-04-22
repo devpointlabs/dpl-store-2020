@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, Image, Grid, } from "semantic-ui-react";
+import { Image, } from "semantic-ui-react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import BlueHeader from "../images/BlueHeader2.svg";
@@ -225,6 +225,7 @@ const style = {
     border: "none",
     filter: "brightness(0.9)",
     padding: "10px",
+    borderRadius: "15px",
   },
   arrow: {
     width: "12px",
@@ -232,6 +233,9 @@ const style = {
     display: "inline-block",
     left: "93px",
     top: "205px",
+  },
+  option: {
+    backgroundColor: "white",
   },
   product: {
     width: "275px",
