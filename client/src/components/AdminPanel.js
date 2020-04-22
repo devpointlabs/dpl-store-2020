@@ -116,7 +116,7 @@ export default class AdminPanel extends Component {
                   </div>
                 </>
               ) : (
-                  <CategoryForm category={this.state.category} />
+                  <CategoryForm category={this.state.category} setCategory={this.setCategory}/>
               )}
             </div>
           <div>
