@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Card, Grid, Button, Image, Container } from "semantic-ui-react";
+import { Card, Grid, Button, Image, Container, Item } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Arrow from "../images/LineArrowDown.svg";
 import { CartConsumer } from "../providers/CartProvider";
+import styled from "styled-components";
+
 
 const DynamicProduct = ({
   category_id,
@@ -92,30 +94,28 @@ const DynamicProduct = ({
           <Button style={style.headerButton}>Go Back</Button>
         </Link>
       </div>
+
       <Container>
-        <Card key={product.id} style={style.card}>
+        <CustomCard key={product.id}>
           <Card.Header>
-            <Grid>
+            <Grid stackable columns={2}>
               <div align="center">
-                <Grid.Column width={8} kvb>
+                <Grid.Column maxWidth="50%" kvb>
                   {imageGroup()}
                 </Grid.Column>
               </div>
               <Grid.Column width={7}>
-                <Grid.Row style={{ marginTop: "20%" }}>
+                <Grid.Row style={style.productGridRight}>
                   <h1>{product.title}</h1>
                 </Grid.Row>
-                <br />
-                <Grid.Row>
+                <Grid.Row style={style.productGridRight}>
                   <h4>{product.description}</h4>
                 </Grid.Row>
-                <br />
-                <Grid.Row>
+                <Grid.Row style={style.productGridRight}>
                   <h1>{"$" + product.price}</h1>
                 </Grid.Row>
-                <br />
 
-                <div class="fitted-icon">
+                <div>
                   <p>Size</p>
                   <select
                     style={style.dropdown}
@@ -127,7 +127,6 @@ const DynamicProduct = ({
                       </option>
                     ))}
                   </select>
-                  {/* <Image src={Arrow} style={style.arrow}></Image> */}
                 </div>
                 <div>
                   <br />
@@ -144,8 +143,61 @@ const DynamicProduct = ({
               </Grid.Column>
             </Grid>
           </Card.Header>
-        </Card>
+        </CustomCard>
       </Container>
+
+
+      {/* <Container>
+        <Item.Group key={product.id} style={style.card}>
+          <Item>
+            <Item.Image>
+              <div align="center">
+                <Grid.Column maxWidth="50%" kvb>
+                  {imageGroup()}
+                </Grid.Column>
+              </div>
+            </Item.Image>
+
+            <Item.Content>
+              <Item.Header>
+                <h1>{product.title}</h1>
+              </Item.Header>
+              <Item.Description>
+                <h4>{product.description}</h4>
+              </Item.Description>
+              <Item.Meta>
+                {"$" + product.price}
+              </Item.Meta>
+              <Item.Extra>
+                <div>
+                  <p>Size</p>
+                  <select
+                    style={style.dropdown}
+                    onChange={e => setSize(e.currentTarget.value)}
+                  >
+                    {items.map(({ label, value }) => (
+                      <option key={value} value={value}>
+                        {label === "noSize" ? "none" : label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <Grid.Row>
+                    <Button
+                      as={Link}
+                      to="/cart"
+                      style={style.button}
+                      content="Add to Cart"
+                      onClick={() => addItemToCart(product, size)}
+                    />
+                  </Grid.Row>
+                </div>
+              </Item.Extra>
+            </Item.Content>
+          </Item>
+        </Item.Group>
+      </Container> */}
     </>
   );
 };
@@ -160,6 +212,21 @@ export class ConnectedDynamicProduct extends React.Component {
   }
 }
 
+const CustomCard = styled.div`
+  height: 600px;
+  width: 1100px;
+  border-radius: 12px;
+  margin-bottom: 20%;
+  margin-top: -100px;
+  background-color: white;
+  border: 0.5px solid #D3D3D3;
+  @media only screen and (max-width: 900px) {
+    height: 1200px;
+    width: 500px;
+  }
+`;
+
+
 const style = {
   button: {
     color: "white",
@@ -167,6 +234,10 @@ const style = {
     borderRadius: "30px",
     padding: "20px",
     width: "460px"
+  },
+  productGridRight: {
+    marginTop: "60px",
+    marginBottom: "30px",
   },
   headerContainer: {
     backgroundColor: "#4901DB",
@@ -205,19 +276,19 @@ const style = {
     height: "75px",
     width: "75px",
   },
-  card: {
-    height: "600px",
-    width: "1100px",
-    borderRadius: "12px",
-    marginBottom: "20%",
-    marginTop: "-100px"
-  },
+  // card: {
+  //   height: "600px",
+  //   width: "1100px",
+  //   borderRadius: "12px",
+  //   marginBottom: "20%",
+  //   marginTop: "-100px"
+  // },
   rounded: {
     borderRadius: "25px",
     padding: "40px"
   },
   dropdown: {
-    width: "460px",
+    width: "50%",
     height: "40px",
     backgroundColor: "#FFFFFF",
     borderColor: "lightgrey",
@@ -228,14 +299,6 @@ const style = {
     textOverflow: "",
     paddingLeft: "10px",
   },
-  // arrow: {
-  //   backgroundColor: "#FFFFFF",
-  //   width: "20px",
-  //   position: "absolute",
-  //   display: "inline-block",
-  //   left: "425px",
-  //   top: "305px"
-  // }
 };
 
 export default ConnectedDynamicProduct;

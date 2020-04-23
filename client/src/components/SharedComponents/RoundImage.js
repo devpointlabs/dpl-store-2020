@@ -26,5 +26,4 @@ const Container = styled.div`
   ${props => props.media}
 `
 
-
 export default RoundImage;

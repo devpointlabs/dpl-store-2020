@@ -28,7 +28,8 @@ const Footer = () => (
               <ContactText>
                 <p style={styles.text}>370 South 300 East</p>
                 <p style={styles.text}>Salt Lake City, Utah</p>
-              84111</ContactText>
+                <p style={styles.text}>84111</p>
+              </ContactText>
             </div>
           </StyledContact>
           <StyledContact >
@@ -86,7 +87,7 @@ const ContactHolder = styled.div`{
 
 const styles = {
   text: {
-    marginBottom: "3px",
+    margin: "1px",
   }
 }
 
