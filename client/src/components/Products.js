@@ -78,7 +78,7 @@ export default class Products extends Component {
     return (
       <>
         <div className="image-container">
-          <Image src={BlueHeader} fluid />
+          <Image src={BlueHeader} style={{ width: "100%" }}  />
           <HeaderContent className="centered">
             <AllMerch>All Merchandise</AllMerch>
             <Find>Find something you'll love.</Find>
