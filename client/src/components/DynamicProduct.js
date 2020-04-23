@@ -183,6 +183,7 @@ const style = {
     backgroundColor: "#4901DB",
     borderRadius: "30px",
     padding: "20px",
+    marginTop: '10px',
     width: "460px"
   },
   productGridRight: {
@@ -241,6 +242,8 @@ const style = {
     textIndent: "1px",
     textOverflow: "",
     paddingLeft: "10px",
+    marginTop: '5px',
+    marginBottom: '5px',
   },
 };
 
