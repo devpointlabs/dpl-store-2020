@@ -165,6 +165,7 @@ const CustomCard = styled.div`
   margin-top: -100px;
   background-color: white;
   border: 0.5px solid #D3D3D3;
+  box-shadow: 0 5px 5px -2px gray;
   @media only screen and (max-width: 1024px) {
     height: 1200px;
     width: 400px;
