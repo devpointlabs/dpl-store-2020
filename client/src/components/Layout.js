@@ -1,21 +1,16 @@
-import PropTypes from "prop-types";
 import React, { Component, useState } from "react";
 import {
-  Container,
+  
   Icon,
   Image,
   Menu,
   Button,
-  Responsive,
   Sidebar,
-  Visibility,
-  Segment,
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Beaker from "../images/logo_black.svg";
 import Links from "./Links";
-import { getAllCartItems } from "../modules/CartFunctions";
-import { CartConsumer } from "../providers/CartProvider";
+
 
 const Layout = ({ children }) => {
   const [visible, setVisible] = useState(true);
