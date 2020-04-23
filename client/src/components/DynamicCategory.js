@@ -103,9 +103,9 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
 
   const sortItems = (items, type) => {
     let sorted = [];
-    if (type == 'highPrice') {
+    if (type === 'highPrice') {
       sorted = items.sort((a, b) => a.price > b.price ? -1 : 1);
-    } else if (type == 'lowPrice') {
+    } else if (type === 'lowPrice') {
       sorted = items.sort((a, b) => a.price > b.price ? 1 : -1);
     } else {
       sorted = items;
@@ -123,11 +123,11 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
           <HeaderContent className="centered">
             <CatName>{category && category.name}</CatName>
             <FunctionalSearch afterSearch={setResults} category_id={cat_id} />
-            <h4 >Price</h4>
+            <Price >Price</Price>
             <select style={style.sort} onChange={ (e) => setSortType(e.target.value) }>
               <option value='default' defaultValue > Sort by </option>
-              <option value='highPrice'>Highest to Lowest</option>
-              <option value='lowPrice'>Lowest to Highest</option>
+              <option value='highPrice'>Highest</option>
+              <option value='lowPrice'>Lowest</option>
             </select>
             <Image src={Arrow} style={style.arrow} className= "filter-white"></Image>
           </HeaderContent>
@@ -193,7 +193,7 @@ const style = {
     justifyContent: "flex-start",
   },
   sort: {
-    backgroundColor: "transparent",
+    backgroundColor: "#4901DB",
     boxShadow: "-2px -2px 10px rgba(255,255,255,0.2), 2px 2px 10px rgba(0,0,0,0.2)",
     width: "80px",
     height: "40px",
@@ -202,7 +202,6 @@ const style = {
     webkitAppearance: "none",
     mozAppearance: "none",
     border: "none",
-    filter: "brightness(0.9)",
     padding: "10px",
     borderRadius: "15px",
   },
@@ -211,7 +210,7 @@ const style = {
     position: "absolute",
     display: "inline-block",
     left: "63px",
-    top: "153px",
+    top: "150px",
   },
   option: {
     backgroundColor: "white",
@@ -231,7 +230,7 @@ const style = {
   `
 }
 
-const PhotoHolder = styled.div`{
+const PhotoHolder = styled.div`
   background: #fff;
   vertical-align: top;
   width: 100%;
@@ -263,22 +262,14 @@ const PhotoHolder = styled.div`{
     box-shadow: 0px 3px 10px #cccccc;
     height:400px;
   }
-}
 `
-const Truncated = styled.div `
-  width: 120px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`
-
 const HeaderContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 `
 
-const CatName = styled.div`{
+const CatName = styled.div`
   font-size: 4vw;
   font-weight:bold; 
   margin-bottom: 30px;
@@ -287,8 +278,36 @@ const CatName = styled.div`{
     font-size: 3vw;
     margin-bottom: 20px;
   }
-}
 `
+const Sort = styled.div`
+  background-color: transparent;
+  box-shadow: -2px -2px 10px rgba(255,255,255,0.2), 2px 2px 10px rgba(0,0,0,0.2)";
+  width: 80px;
+  height: 40px;
+  color: white;
+  webkit-appearance: none;
+  moz-appearance: none;
+  border: none;
+  filter: brightness(0.9);
+  padding: 10px;
+  border-radius: 15px;
+  margin-top: 5%;
 
+  @media(max-width: 900px) {
+    width: 40px;
+    height: 20px;
+    padding: 5px;
+  }
+`
+const Price = styled.div`
+  font-size: 16px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  
+  @media(max-width: 900px) {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+`
 
 export default DynamicCategory;
