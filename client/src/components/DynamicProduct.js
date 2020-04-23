@@ -145,59 +145,6 @@ const DynamicProduct = ({
           </Card.Header>
         </CustomCard>
       </Container>
-
-
-      {/* <Container>
-        <Item.Group key={product.id} style={style.card}>
-          <Item>
-            <Item.Image>
-              <div align="center">
-                <Grid.Column maxWidth="50%" kvb>
-                  {imageGroup()}
-                </Grid.Column>
-              </div>
-            </Item.Image>
-
-            <Item.Content>
-              <Item.Header>
-                <h1>{product.title}</h1>
-              </Item.Header>
-              <Item.Description>
-                <h4>{product.description}</h4>
-              </Item.Description>
-              <Item.Meta>
-                {"$" + product.price}
-              </Item.Meta>
-              <Item.Extra>
-                <div>
-                  <p>Size</p>
-                  <select
-                    style={style.dropdown}
-                    onChange={e => setSize(e.currentTarget.value)}
-                  >
-                    {items.map(({ label, value }) => (
-                      <option key={value} value={value}>
-                        {label === "noSize" ? "none" : label}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <Grid.Row>
-                    <Button
-                      as={Link}
-                      to="/cart"
-                      style={style.button}
-                      content="Add to Cart"
-                      onClick={() => addItemToCart(product, size)}
-                    />
-                  </Grid.Row>
-                </div>
-              </Item.Extra>
-            </Item.Content>
-          </Item>
-        </Item.Group>
-      </Container> */}
     </>
   );
 };
@@ -280,13 +227,6 @@ const style = {
     height: "75px",
     width: "75px",
   },
-  // card: {
-  //   height: "600px",
-  //   width: "1100px",
-  //   borderRadius: "12px",
-  //   marginBottom: "20%",
-  //   marginTop: "-100px"
-  // },
   rounded: {
     borderRadius: "25px",
     padding: "40px"
