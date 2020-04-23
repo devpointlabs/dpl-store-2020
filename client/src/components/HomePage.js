@@ -90,7 +90,6 @@ const style = {
   categoryLinks: {
     display: "flex",
     flexWrap: "wrap",
-    marginTop: "10%",
     marginBottom: "30px",
     float: "left",
     width: "100%"
