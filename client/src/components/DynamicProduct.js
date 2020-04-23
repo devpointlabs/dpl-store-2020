@@ -127,7 +127,7 @@ const DynamicProduct = ({
                       </option>
                     ))}
                   </select>
-                  <Image src={Arrow} style={style.arrow}></Image>
+                  {/* <Image src={Arrow} style={style.arrow}></Image> */}
                 </div>
                 <div>
                   <br />
@@ -228,14 +228,14 @@ const style = {
     textOverflow: "",
     paddingLeft: "10px",
   },
-  arrow: {
-    backgroundColor: "#FFFFFF",
-    width: "20px",
-    position: "absolute",
-    display: "inline-block",
-    left: "425px",
-    top: "42px"
-  }
+  // arrow: {
+  //   backgroundColor: "#FFFFFF",
+  //   width: "20px",
+  //   position: "absolute",
+  //   display: "inline-block",
+  //   left: "425px",
+  //   top: "305px"
+  // }
 };
 
 export default ConnectedDynamicProduct;

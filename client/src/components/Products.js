@@ -6,7 +6,7 @@ import BlueHeader from '../images/BlueHeader2.svg';
 import FunctionalSearch from './SharedComponents/FunctionalSearch';
 import RoundImage from './SharedComponents/RoundImage';
 import { Link, } from 'react-router-dom';
-
+import styled from 'styled-components'
 
 
 export default class Products extends Component {
@@ -79,11 +79,11 @@ export default class Products extends Component {
       <>
         <div className="image-container">
           <Image src={BlueHeader} fluid />
-          <div className="centered">
-            <h1 className="large-header">All Merchandise</h1>
-            <h3 className="small-header">Find something you'll love.</h3>
+          <HeaderContent className="centered">
+            <AllMerch>All Merchandise</AllMerch>
+            <Find>Find something you'll love.</Find>
             <FunctionalSearch afterSearch={this.afterSearch}  />
-          </div>
+          </HeaderContent>
         </div>
         
         <div style={style.container}>
@@ -143,5 +143,36 @@ const style = {
       height: 125px;
       width: 125px;
     }
-  `
+  `,
 }
+
+const HeaderContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`
+
+const AllMerch = styled.div`{
+  font-size: 4vw;
+  font-weight:bold; 
+  margin-bottom: 40px;
+  
+  @media(max-width: 900px) {
+    font-size: 3vw;
+    margin-bottom: 10px;
+  }
+}
+`
+const Find = styled.div`{
+  font-size: 1.5vw;
+  margin-bottom: 30px;
+  
+  @media(max-width: 900px) {
+    font-size: 1vw;
+    margin-bottom: 10px;
+    }
+}
+`
+ 
+  
+
