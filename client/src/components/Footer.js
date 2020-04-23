@@ -26,8 +26,8 @@ const Footer = () => (
             </div>
             <div >
               <ContactText>
-                370 South 300 East<br />
-              Salt Lake City, Utah<br />
+                <p style={styles.text}>370 South 300 East</p>
+                <p style={styles.text}>Salt Lake City, Utah</p>
               84111</ContactText>
             </div>
           </StyledContact>
@@ -84,6 +84,12 @@ const ContactHolder = styled.div`{
 }
 `
 
+const styles = {
+  text: {
+    marginBottom: "3px",
+  }
+}
+
 const StyledFooter = styled.div` {
   position: relative;
   z-index: 1;
@@ -133,9 +139,9 @@ const StyledContact = styled.div` {
 }
 `
 const ContactText = styled.div `{
-  font-size: 1.5vw;
+  font-size: 1.0vw;
   @media(max-width: 900px) {
-    font-size: 2vw
+    font-size: 1.5vw
     }
 }`
 
