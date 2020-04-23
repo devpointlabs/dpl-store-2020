@@ -104,7 +104,7 @@ const DynamicProduct = ({
                   {imageGroup()}
                 </Grid.Column>
               </div>
-              <Grid.Column width={7}>
+              <Grid.Column align="left">
                 <Grid.Row style={style.productGridRight}>
                   <h1>{product.title}</h1>
                 </Grid.Row>
@@ -220,9 +220,13 @@ const CustomCard = styled.div`
   margin-top: -100px;
   background-color: white;
   border: 0.5px solid #D3D3D3;
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: 1024px) {
     height: 1200px;
-    width: 500px;
+    width: 400px;
+  };
+  @media only screen and (max-width: 411px) {
+    height: 1200px;
+    width: 400px;
   }
 `;
 
