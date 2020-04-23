@@ -4,8 +4,7 @@ import { Card, Grid, Button, Image, Container, Item } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Arrow from "../images/LineArrowDown.svg";
 import { CartConsumer } from "../providers/CartProvider";
-import styled from "styled-components";
-
+import styled from 'styled-components';
 
 const DynamicProduct = ({
   category_id,
@@ -54,7 +53,7 @@ const DynamicProduct = ({
     return (
       <>
         <div style={style.roundedImage(showImage)}/>
-        <Image.Group style={style.imageGroup} >
+        <ResponsiveAltImage as ={Image.Group}>
           <Image
             src={product.main_image}
             style={style.altImage}
@@ -78,7 +77,7 @@ const DynamicProduct = ({
               );
             }
           })}
-        </Image.Group>
+        </ResponsiveAltImage>
       </>
     );
   };
@@ -246,5 +245,25 @@ const style = {
     marginBottom: '5px',
   },
 };
+
+const ResponsiveImage = styled.div` {
+ 
+  @media(max-width: 900px) {
+    width: 280px
+    height: 380px
+    }
+}
+`
+
+const ResponsiveAltImage = styled.div` {
+    marginLeft: 40px,
+    display: flex,
+    alignItems: flex-start,
+
+  @media(max-width: 900px) {
+    float: right
+    }
+}
+`
 
 export default ConnectedDynamicProduct;

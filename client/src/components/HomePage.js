@@ -49,7 +49,7 @@ const HomepageLayout = () => {
   return (
     <>
       <div className="image-container">
-        <Image src={BlueHeader} />
+        <Image src={BlueHeader} style={{ width: "100%" }} />
         {/* <div style={{backgroundSize: "cover", backgroundPosition: "top", backgroundRepeat: "no-repeat", backgroundImage: `url(${BlueHeader})`}} /> */}
         <HeaderContent className="centered">
           <DevPoint>DevPoint Store</DevPoint>
