@@ -18,9 +18,7 @@ const Links = () => {
 
   const renderLinks = () =>
     categories.map( (category) => (
-      <div key={`${category.id}`}>
-        <Menu.Item as={Link} to={{pathname:`/categories/${category.id}/products`,}}>{category.name}</Menu.Item>
-      </div>
+        <Menu.Item key={`${category.id}`} as={Link} to={{pathname:`/categories/${category.id}/products`,}}>{category.name}</Menu.Item>
     ));
 
   return(
