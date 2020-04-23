@@ -5,7 +5,7 @@ tshirts = Category.create(name: 'T-Shirts', image: 'https://res.cloudinary.com/d
 shirt = Product.create(
   category_id: tshirts.id,
     title: 'Grey Tshirt',
-    description: Faker::Movies::HarryPotter.quote,
+    description: "It looks grey so you don't have to",
     price: 7,
     has_size: true,
     sizes: { Xsmall: 5, Small: 5, Medium: 5, Large: 5, XLarge: 5, XXL: 5 },
@@ -21,7 +21,7 @@ Image.create(
 Product.create(
   category_id: tshirts.id,
     title: 'Planet',
-    description: Faker::Movies::HarryPotter.quote,
+    description: "A t-shirt truly worthy of the cosmos.",
     price: 7,
     has_size: true,
     sizes: { Xsmall: 5, Small: 5, Medium: 5, Large: 5, XLarge: 5, XXL: 5 },
@@ -34,7 +34,7 @@ hats = Category.create(name: 'Hats', image: 'https://img-s-msn-com.akamaized.net
 hat = Product.create(
   category_id: hats.id,
     title: 'Black Hat',
-    description: Faker::Movies::HarryPotter.quote,
+    description: "There are black hat hackers out there. Now you can pretend to be one.",
     price: 15,
     has_size: true,
     sizes: {noSize: 20 },
@@ -54,7 +54,7 @@ hoodies = Category.create(name: 'Hoodies', image:'https://res.cloudinary.com/dpo
 jacket = Product.create(
   category_id: hoodies.id,
     title: 'Grey Jacket',
-    description: Faker::Movies::HarryPotter.quote,
+    description: "Ever feeling cold on a dark grey rainey day? Blend into the grey with this stylish hoodie.",
     price: 30,
     has_size: true,
     sizes: { Xsmall: 5, Small: 5, Medium: 5, Large: 5, XLarge: 5, XXL: 5 },
@@ -70,7 +70,7 @@ Image.create(
 Product.create(
   category_id: hoodies.id,
     title: 'Black Hoodie',
-    description: Faker::Movies::HarryPotter.quote,
+    description: "Hoodies are comfortable. This one is probably more comfortable than most.",
     price: 20,
     has_size: true,
     sizes: { Xsmall: 5, Small: 5, Medium: 5, Large: 5, XLarge: 5, XXL: 5 },
@@ -82,7 +82,7 @@ Product.create(
 greyhoodie = Product.create(
   category_id: hoodies.id,
     title: 'Grey Hoodie',
-    description: Faker::Movies::HarryPotter.quote,
+    description: "Soft grey material and a hood. What more could you want?",
     price: 25,
     has_size: true,
     sizes: { Xsmall: 5, Small: 5, Medium: 5, Large: 5, XLarge: 5, XXL: 5 },
@@ -107,7 +107,7 @@ other = Category.create(name: 'Other', image: 'https://res.cloudinary.com/dpo2wz
 glasses = Product.create(
   category_id: other.id,
     title: 'Glasses',
-    description: Faker::Movies::HarryPotter.quote,
+    description: "You wont see the world through rose colored glasses, but these are bit better",
     price: 15,
     has_size: false,
     sizes: {noSize: 20 },
@@ -122,7 +122,7 @@ Image.create(
 Product.create(
   category_id: other.id,
     title: 'Koozie',
-    description: Faker::Movies::HarryPotter.quote,
+    description: "Coding can be hard. Beer can make that better. Keep your beer cold with this koozie. Or like... sparkling water if you're still at work.",
     price: 6,
     has_size: false,
     sizes: {noSize: 20 },
@@ -133,7 +133,7 @@ Product.create(
 Product.create(
   category_id: other.id,
     title: 'Thin Sticker',
-    description: Faker::Movies::HarryPotter.quote,
+    description: "So thin. It will fit on a laptop, or a water bottle. We both know whats happening to these stickers.",
     price: 2,
     has_size: false,
     sizes: {noSize: 20 },
@@ -144,7 +144,7 @@ Product.create(
 Product.create(
   category_id: other.id,
     title: 'Small Sticker',
-    description: Faker::Movies::HarryPotter.quote,
+    description: "DevPoint Labs Black Beaker Logo",
     price: 1,
     has_size: false,
     sizes: {noSize: 20 },
@@ -155,7 +155,7 @@ Product.create(
 Product.create(
   category_id: other.id,
     title: 'Medium Sticker',
-    description: Faker::Movies::HarryPotter.quote,
+    description: 'Black DevPoint Labs Logo',
     price: 2,
     has_size: false,
     sizes: {noSize: 20 },
@@ -167,6 +167,6 @@ Product.create(
 
 puts 'Products Seeded'
 
-Admin.create(name:"admin", email:"admin@email.com", password:"adminPassword")
+Admin.create(name:"admin", email:"email@email.com", password:"password")
 
-puts "admin created with email: admin@email.com, password:adminPassword"
+puts "admin created with email: email@email.com, password:password"

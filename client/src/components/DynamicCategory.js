@@ -126,8 +126,8 @@ const DynamicCategory = ({ category_id, match, category_name, noHeader }) => {
             <h4 >Price</h4>
             <select style={style.sort} onChange={ (e) => setSortType(e.target.value) }>
               <option value='default' defaultValue > Sort by </option>
-              <option value='highPrice'>Highest to Lowest</option>
-              <option value='lowPrice'>Lowest to Highest</option>
+              <option value='highPrice'>Highest</option>
+              <option value='lowPrice'>Lowest</option>
             </select>
             <Image src={Arrow} style={style.arrow} className= "filter-white"></Image>
           </HeaderContent>
