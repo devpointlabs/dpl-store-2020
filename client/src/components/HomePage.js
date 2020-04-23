@@ -154,7 +154,7 @@ const Find = styled.div`{
   margin-bottom: 30px; 
 
   @media(max-width: 900px) {
-    font-size: 1vw;
+    font-size: 2.0vw;
     margin-bottom: 10px;
     }
 }

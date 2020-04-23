@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Card, Grid, Button, Image, Container } from "semantic-ui-react";
+import { Card, Grid, Button, Image, Container, Item } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Arrow from "../images/LineArrowDown.svg";
 import { CartConsumer } from "../providers/CartProvider";
@@ -93,59 +93,54 @@ const DynamicProduct = ({
           <Button style={style.headerButton}>Go Back</Button>
         </Link>
       </div>
-      <Container>
-        <Card key={product.id} style={style.card}>
-          <Card.Header>
-            <Grid>
-              <div align="center">
-                <Grid.Column width={8} kvb>
-                  {imageGroup()}
-                </Grid.Column>
-              </div>
-              <Grid.Column width={7}>
-                <Grid.Row style={{ marginTop: "20%" }}>
-                  <h1>{product.title}</h1>
-                </Grid.Row>
-                <br />
-                <Grid.Row>
-                  <h4>{product.description}</h4>
-                </Grid.Row>
-                <br />
-                <Grid.Row>
-                  <h1>{"$" + product.price}</h1>
-                </Grid.Row>
-                <br />
 
-                <div class="fitted-icon">
-                  <p>Size</p>
-                  <select
-                    style={style.dropdown}
-                    onChange={e => setSize(e.currentTarget.value)}
-                  >
-                    {items.map(({ label, value }) => (
-                      <option key={value} value={value}>
-                        {label === "noSize" ? "none" : label}
-                      </option>
-                    ))}
-                  </select>
-                  {/* <Image src={Arrow} style={style.arrow}></Image> */}
-                </div>
-                <div>
-                  <br />
-                  <Grid.Row>
-                    <Button
-                      as={Link}
-                      to="/cart"
-                      style={style.button}
-                      content="Add to Cart"
-                      onClick={() => addItemToCart(product, size)}
-                    />
-                  </Grid.Row>
-                </div>
+      <Container>
+        <CustomCard key={product.id}>
+          <Grid stackable columns={2}>
+            <div align="center">
+              <Grid.Column maxWidth="50%" kvb>
+                {imageGroup()}
               </Grid.Column>
-            </Grid>
-          </Card.Header>
-        </Card>
+            </div>
+            <Grid.Column align="left">
+              <Grid.Row style={style.productGridRight}>
+                <h1>{product.title}</h1>
+              </Grid.Row>
+              <Grid.Row style={style.productGridRight}>
+                <h4>{product.description}</h4>
+              </Grid.Row>
+              <Grid.Row style={style.productGridRight}>
+                <h1>{"$" + product.price}</h1>
+              </Grid.Row>
+
+              <div>
+                <p>Size</p>
+                <select
+                  style={style.dropdown}
+                  onChange={e => setSize(e.currentTarget.value)}
+                >
+                  {items.map(({ label, value }) => (
+                    <option key={value} value={value}>
+                      {label === "noSize" ? "none" : label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <br />
+                <Grid.Row>
+                  <Button
+                    as={Link}
+                    to="/cart"
+                    style={style.button}
+                    content="Add to Cart"
+                    onClick={() => addItemToCart(product, size)}
+                  />
+                </Grid.Row>
+              </div>
+            </Grid.Column>
+          </Grid>
+        </CustomCard>
       </Container>
     </>
   );
@@ -161,13 +156,38 @@ export class ConnectedDynamicProduct extends React.Component {
   }
 }
 
+const CustomCard = styled.div`
+  height: 600px;
+  width: 1100px;
+  border-radius: 12px;
+  margin-bottom: 20%;
+  margin-top: -100px;
+  background-color: white;
+  border: 0.5px solid #D3D3D3;
+  box-shadow: 0 5px 5px -2px gray;
+  @media only screen and (max-width: 1024px) {
+    height: 1200px;
+    width: 400px;
+  };
+  @media only screen and (max-width: 411px) {
+    height: 1200px;
+    width: 400px;
+  }
+`;
+
+
 const style = {
   button: {
     color: "white",
     backgroundColor: "#4901DB",
     borderRadius: "30px",
     padding: "20px",
+    marginTop: '10px',
     width: "460px"
+  },
+  productGridRight: {
+    marginTop: "60px",
+    marginBottom: "30px",
   },
   headerContainer: {
     backgroundColor: "#4901DB",
@@ -206,19 +226,12 @@ const style = {
     height: "75px",
     width: "75px",
   },
-  card: {
-    height: "600px",
-    width: "1100px",
-    borderRadius: "12px",
-    marginBottom: "20%",
-    marginTop: "-100px"
-  },
   rounded: {
     borderRadius: "25px",
     padding: "40px"
   },
   dropdown: {
-    width: "460px",
+    width: "50%",
     height: "40px",
     backgroundColor: "#FFFFFF",
     borderColor: "lightgrey",
@@ -228,15 +241,9 @@ const style = {
     textIndent: "1px",
     textOverflow: "",
     paddingLeft: "10px",
+    marginTop: '5px',
+    marginBottom: '5px',
   },
-  // arrow: {
-  //   backgroundColor: "#FFFFFF",
-  //   width: "20px",
-  //   position: "absolute",
-  //   display: "inline-block",
-  //   left: "425px",
-  //   top: "305px"
-  // }
 };
 
 const ResponsiveImage = styled.div` {
