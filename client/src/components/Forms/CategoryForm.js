@@ -67,6 +67,7 @@ class CategoryForm extends Component {
         <div id={`${name}-${id}`}>
           <Form onSubmit={this.handleSubmit}>
             <Form.Input
+              style={styles.nameInput}
               palceholder="Category Name"
               label="Category Name"
               required
@@ -74,23 +75,19 @@ class CategoryForm extends Component {
               value={name}
               onChange={this.handleChange}
             />
-            <div style={{ display: "flex", paddingBottom: "10px" }}>
-              <Dropzone
-                onDrop={this.onDrop}
-                multiple={false}
-                style={`background_image:${image}`}
-              >
+            <div style={styles.imageArea}>
+              <Dropzone onDrop={this.onDrop} multiple={false}>
                 {({ getRootProps, getInputProps, isDragActive }) => {
                   return (
                     <div {...getRootProps()} style={styles.dropzone}>
                       <input {...getInputProps()} />
                       {isDragActive ? (
                         <>
-                          <p>drop files here!</p>
+                          <p style={styles.text}>drop files here!</p>
                         </>
                       ) : (
                         <>
-                          <p>Click to add a picture or drag here</p>
+                          <p style={styles.text}>Click to add a picture or drag here</p>
                         </>
                       )}
                     </div>
@@ -99,22 +96,28 @@ class CategoryForm extends Component {
               </Dropzone>
               <img src={image} style={styles.image} alt="Alternate" />
             </div>
-            <Form.Button positive>Submit</Form.Button>
-            <Form.Button onClick={this.handleClose} negative>
-              Cancel
-            </Form.Button>
+            <div style={styles.buttonGroup}>
+              <Form.Button positive>Submit</Form.Button>
+              <Form.Button onClick={this.handleClose} negative>
+                Cancel
+              </Form.Button>
+              <Form.Button
+                negative
+                onClick={this.openDeleteConfirm}
+                style={styles.delete}
+              >
+                delete category <Icon name="trash" />
+              </Form.Button>
+            </div>
           </Form>
-          <Modal
-            open={this.state.deleteConfirm}
-            onClose={this.closeDeleteConfirm}
-            basic
-          >
-            {this.deleteModal()}
-          </Modal>
-          <Button negative onClick={this.openDeleteConfirm} style={styles.delete}>
-            delete category <Icon name="trash"/>
-          </Button>
         </div>
+        <Modal
+          open={this.state.deleteConfirm}
+          onClose={this.closeDeleteConfirm}
+          basic
+        >
+          {this.deleteModal()}
+        </Modal>
       </Modal.Content>
     );
   };
@@ -173,7 +176,7 @@ class CategoryForm extends Component {
             open={this.state.modalOpen}
             onClose={this.handleClose}
           >
-            {this.categoryFormat()}
+            <div style={styles.modalArea}>{this.categoryFormat()}</div>
           </Modal>
         </div>
       </>
@@ -256,19 +259,31 @@ export default CategoryForm;
 
 const styles = {
   dropzone: {
-    height: "150px",
-    width: "150px",
-    border: "1px dashed black",
-    borderRadius: "5px",
-    display: "flex",
-    justifyContent: "center",
+    height: "100%",
+    width: "100%",
+    objectFit: "cover",
+    border: "1px dashed grey",
+    borderRadius: "10px",
     alignItems: "center",
-    padding: "10px"
+    zIndex: "5",
+    textAlign: "center",
+    position: "relative",
   },
   image: {
-    height: "150px",
-    width: "150px",
-    display: "flex"
+    width: "100%",
+    height: "100%",
+    maxWidth: "800px",
+    objectFit: "cover",
+    zIndex: "1",
+    position: "relative",
+    top: "-300px",
+    borderRadius: "10px",
+  },
+  imageArea: {
+    width: "100%",
+    height: "300px",
+    maxWidth: "500px",
+    marginBottom: "20px",
   },
   button: {
     borderRadius: "30px",
@@ -292,7 +307,21 @@ const styles = {
     cursor: "pointer"
   },
   delete: {
-    marginTop: "10px",
     padding: "10px"
+  },
+  modalArea:{
+    height: "100%",
+    width: "100%",
+    margin: "25px"
+  },
+  buttonGroup: {
+    display: "flex",
+    flexDirection: "wrap",
+    position: "relative",
+    margin: "25px",
+    paddingBottom: "20px"
+  },
+  nameInput: {
+    width: "80%"
   }
 };
