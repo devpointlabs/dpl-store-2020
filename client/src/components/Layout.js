@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Beaker from "../images/logo_black.svg";
 import Links from "./Links";
 import styled from "styled-components";
+import Cart from './Cart'
 
 const Layout = ({ children }) => {
   const [visible, setVisible] = useState(false);
@@ -21,9 +22,10 @@ const Layout = ({ children }) => {
         width="thin"
       >
         <Menu.Item as={Link} to="/">
-          <Image src={Beaker} size="tiny" className="filter-white"></Image>
+          <Image as='center' src={Beaker} size="tiny" className="filter-white"></Image>
         </Menu.Item>
         <Links />
+        
       </Sidebar>
       <Sidebar.Pusher>
         <HamburgerContainer>
