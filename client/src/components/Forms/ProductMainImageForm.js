@@ -107,9 +107,9 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    color:"blue",
-    webkitTextFillColor: "black",
-    webkitTextStrokeWidth: "1px",
-    webkitTextStrokeColor: "blue"
+    color: "blue",
+    WebkitTextFillColor: "black",
+    WebkitTextStrokeWidth: "1px",
+    WebkitTextStrokeColor: "blue"
   }
 };

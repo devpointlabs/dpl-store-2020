@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import { Icon, Image, Menu, Button, Sidebar } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Beaker from "../images/logo_black.svg";
