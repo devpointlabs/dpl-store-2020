@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
-import { Icon, Image, Button } from "semantic-ui-react";
+import { Icon, Image, Button, Grid } from "semantic-ui-react";
 import Dropzone from "react-dropzone";
 import ImageIcon from "../../images/Image_Icon.png";
 
@@ -35,29 +35,31 @@ class AltImageForm extends Component {
 
   newAltImageFormat = () => {
     return (
-      <div key="new _alt_Image">
-         <h2>Alt Images</h2>
-        <Dropzone onDrop={file => this.onDrop(file)} multiple={false}>
-          {({ getRootProps, getInputProps, isDragActive }) => {
-            return (
-              <div {...getRootProps()} style={styles.dropzone}>
-                <input {...getInputProps()} />
-                {isDragActive ? (
-                  <p>
-                    <img src={ImageIcon} style={styles.image} alt="thumbnail" />
-                    drop files here!
-                  </p>
-                ) : (
-                  <p>
-                    <img src={ImageIcon} style={styles.image} alt="thumbnail"/>
-                    Click to add a picture or drag here
-                  </p>
-                )}
-              </div>
-            );
-          }}
-        </Dropzone>
-      </div>
+      <Grid.Column width={4}>
+        <div key="new _alt_Image">
+          <Dropzone onDrop={file => this.onDrop(file)} multiple={false}>
+            {({ getRootProps, getInputProps, isDragActive }) => {
+              return (
+                <div {...getRootProps()} style={styles.dropZoneArea}>
+                  <input {...getInputProps()} />
+                  {isDragActive ? (
+                    <p style={styles.text}>drop files here!</p>
+                  ) : (
+                    <p style={styles.text}>
+                      Click to add a picture or drag here
+                    </p>
+                  )}
+                  <img
+                    src={ImageIcon}
+                    style={styles.dropZoneImage}
+                    alt="thumbnail"
+                  />
+                </div>
+              );
+            }}
+          </Dropzone>
+        </div>
+      </Grid.Column>
     );
   };
 
@@ -66,14 +68,14 @@ class AltImageForm extends Component {
       .delete(`/api/products/${image.product_id}/images/${image.id}`)
       .then(res => {
         const newImages = this.state.images.filter(i => {
-          if (i.url !== image.url) {
+          if (i.id !== image.id) {
             return i;
           }
         });
         this.setState({
           images: newImages
         });
-        return res
+        return res;
       })
       .catch(e => console.log(e));
   };
@@ -101,35 +103,37 @@ class AltImageForm extends Component {
   renderAltImages = () => {
     return this.state.images.map(image => {
       return (
-        <div key={image.id}>
-          <Button
-            as="div"
-            style={styles.deleteButton}
-            onClick={() => this.deleteAltImage(image)}
-            color="red"
-          >
-            <Icon name="delete" />
-          </Button>
-          <Image style={styles.image} src={image.url} />
-        </div>
+        <Grid.Column width={4}>
+          <div key={image.id} style={styles.altImageArea}>
+            <Button
+              as="div"
+              style={styles.deleteButton}
+              onClick={() => this.deleteAltImage(image)}
+              color="red"
+            >
+              <Icon name="delete" />
+            </Button>
+            <Image style={styles.image} src={image.url} />
+          </div>
+        </Grid.Column>
       );
     });
   };
 
   render() {
-    if(this.props.product && this.props.product.id){
-    return (
-      <>
-        {this.newAltImageFormat(ImageIcon)}
-
-        {this.renderAltImages()}
-      </>
-    )}else {
-      return(
+    if (this.props.product && this.props.product.id) {
+      return (
         <>
-        {/* <p>please add images after product creation</p> */}
+          <h2>Alt Images</h2>
+          <Grid columns={4}>
+            {this.newAltImageFormat()}
+
+            {this.renderAltImages()}
+          </Grid>
         </>
-      )
+      );
+    } else {
+      return <>{/* <p>please add images after product creation</p> */}</>;
     }
   }
 }
@@ -137,23 +141,45 @@ class AltImageForm extends Component {
 export default AltImageForm;
 
 const styles = {
-  dropzone: {
-    height: "150px",
-    width: "150px",
+  dropZoneArea: {
+    width: "100%",
+    height: "100%",
+    maxHeight: "150px",
+    maxWidth: "150px",
     border: "1px dashed black",
-    borderRadius: "5px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: "10px"
+    borderRadius: "10px",
+    zIndex: "5"
   },
   image: {
-    height: "150px",
-    width: "150px",
-    display: "flex"
+    width: "100%",
+    height: "100%",
+    maxHeight: "100px",
+    objectFit: "cover",
+    borderRadius: "10px"
+  },
+  dropZoneImage: {
+    maxWidth: "100%",
+    maxHeight: "80%",
+    position: "relative",
+    top: "-25px",
+    objectFit: "cover",
+    zIndex: "1",
+    borderRadius: "10px"
+  },
+  altImageArea: {
+    width: "100%",
+    height: "100%",
+    maxHeight: "150px",
+    maxWidth: "150px"
+  },
+  text: {
+    color: "light-grey",
+    webkitTextFillColor: "white",
+    webkitTextStrokeWidth: "1px",
+    webkitTextStrokeColor: "black"
   },
   deleteButton: {
     height: "25px",
-    width: "150px"
+    width: "100%"
   }
 };

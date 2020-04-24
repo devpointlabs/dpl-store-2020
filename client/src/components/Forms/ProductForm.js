@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Form, Modal } from "semantic-ui-react";
+import { Form, Modal, Grid } from "semantic-ui-react";
 import SizeForm from "./ProductSizeForm";
 import axios from "axios";
 import MainImageForm from "./ProductMainImageForm";
 import AltImageForm from "./ProductAltImageForm";
+import ImagePlaceholder from "../../images/Image_Icon.png"
 
 class ProductForm extends Component {
   state = {
@@ -11,7 +12,7 @@ class ProductForm extends Component {
     description: "",
     price: 0.0,
     category_id: "",
-    main_image: "",
+    main_image: ImagePlaceholder,
     sizes: {},
     options: []
   };
@@ -127,7 +128,7 @@ class ProductForm extends Component {
         <Form onSubmit={this.handleSubmit}>
           <Form.Group
             width="equal"
-            style={{ display: "flex", flexDirection: "column", }}
+            style={{ display: "flex", flexDirection: "column" }}
           >
             <Form.Input
               label="Title"
@@ -137,7 +138,7 @@ class ProductForm extends Component {
               onChange={this.handleChange}
               required
             />
-            <br/>
+            <br />
             <Form.TextArea
               label="Description"
               name="description"
@@ -146,7 +147,7 @@ class ProductForm extends Component {
               onChange={this.handleChange}
               required
             />
-            <br/>
+            <br />
             <Form.Input
               label="Price"
               name="price"
@@ -155,9 +156,9 @@ class ProductForm extends Component {
               onChange={this.handleChange}
               required
             />
-            <br/>
+            <br />
             <SizeForm sizes={this.state.sizes} setSizes={this.setSizes} />
-            <br/>
+            <br />
             <Form.Select
               label="Category"
               name="category_id"
@@ -167,17 +168,25 @@ class ProductForm extends Component {
               onChange={this.handleChange}
               required
             />
-            <br/>
-            <div style={styles.imageArea}>
+            <br />
+          </Form.Group>
+          <div style={styles.imageArea}>
+            <div style={styles.mainImageArea}>
               <MainImageForm
                 main_image={main_image}
                 {...this.props}
                 setMainImage={this.setMainImage}
               />
-              <AltImageForm {...this.props} style={{paddingTop: "10px"}}/>
             </div>
-          </Form.Group>
-          <Form.Button type="submit" style={styles.submitBtn}>Submit</Form.Button>
+            <br />
+            <div style={styles.altImageArea}>
+              <AltImageForm {...this.props} />
+            </div>
+          </div>
+
+          <Form.Button type="submit" style={styles.submitBtn}>
+            Submit
+          </Form.Button>
           <Form.Button onClick={this.props.toggleForm} style={styles.cancelBtn}>
             Cancel
           </Form.Button>
@@ -191,10 +200,22 @@ export default ProductForm
 
 const styles = {
   imageArea: {
-    width: "80%",
+    width: "100%",
+    height: "100%",
     margin: "20px",
-    paddingTop: "10px",
-    display: "flex"
+    display: "flex",
+    flexDirection: "wrap",
+    paddingBottom: "40px"
+  },
+  mainImageArea: {
+    width: "25%",
+    height: "100%",
+    margin: "10px",
+  },
+  altImageArea: {
+    width: "75%",
+    height: "100%",
+    margin: "10px",
   },
   submitBtn: {
     color: 'white',
