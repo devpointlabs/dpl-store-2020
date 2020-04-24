@@ -53,7 +53,7 @@ const DynamicProduct = ({
     return (
       <>
         <div style={style.roundedImage(showImage)}/>
-        <ResponsiveAltImage as ={Image.Group}>
+        <Image.Group>
           <Image
             src={product.main_image}
             style={style.altImage}
@@ -77,7 +77,7 @@ const DynamicProduct = ({
               );
             }
           })}
-        </ResponsiveAltImage>
+        </Image.Group>
       </>
     );
   };
@@ -245,25 +245,5 @@ const style = {
     marginBottom: '5px',
   },
 };
-
-const ResponsiveImage = styled.div` {
- 
-  @media(max-width: 900px) {
-    width: 280px
-    height: 380px
-    }
-}
-`
-
-const ResponsiveAltImage = styled.div` {
-    marginLeft: 40px,
-    display: flex,
-    alignItems: flex-start,
-
-  @media(max-width: 900px) {
-    float: right
-    }
-}
-`
 
 export default ConnectedDynamicProduct;
