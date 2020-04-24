@@ -6,7 +6,7 @@ import Links from "./Links";
 import styled from "styled-components";
 
 const Layout = ({ children }) => {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   return (
     <Sidebar.Pushable as="div">
@@ -42,7 +42,7 @@ const HamburgerContainer = styled.div`
   background-color: #4901db;
   width: 100%;
 
-  @media (max-width: 600px) {
+  @media (max-width: 767px) {
     display: inline-block !important;
   }
 `;
