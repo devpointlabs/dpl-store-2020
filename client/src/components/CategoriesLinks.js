@@ -58,7 +58,7 @@ const styles = {
   GridItem:{
     width: "25%",
     height: "20%",
-    marginTop:"25px",
+    // marginTop:"25px",
     paddingTop: "30px"
   },
   Text:{
