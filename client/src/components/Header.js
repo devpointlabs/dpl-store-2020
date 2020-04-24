@@ -59,7 +59,7 @@ HomepageHeading.propTypes = {
 class DesktopContainer extends Component {
   state = {};
 
-  hideFixedMenu = () => this.setState({ fixed: false });
+  hideFixedMenu = () => this.setState({ fixed: true });
   showFixedMenu = () => this.setState({ fixed: true });
 
   render() {

@@ -19,6 +19,7 @@ import Cart from './components/Cart';
 import NoMatch from './components/NoMatch';
 import Terms from './components/Terms';
 import Policy from './components/Policy';
+import Layout from './components/Layout'
 
 
 class App extends React.Component {
@@ -40,8 +41,7 @@ class App extends React.Component {
     return (
       <Fragment>
         <FetchAdmin>
-          <div style={{minHeight: windowHeight, display:'flex', justifyContent:'space-between', flexDirection:'column'}}>
-            <div>
+          <Layout>
               <Navbar />
               <Container fluid>
                 <Switch>
@@ -60,9 +60,8 @@ class App extends React.Component {
                   <Route component={NoMatch} />
                 </Switch>
               </Container>
-            </div>
             <Footer />
-          </div>
+          </Layout>
         </FetchAdmin>
       </Fragment>
     )

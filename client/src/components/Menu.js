@@ -100,87 +100,87 @@ DesktopContainer.propTypes = {
   children: PropTypes.node,
 }
 
-class MobileContainer extends Component {
-  state = {}
+// class MobileContainer extends Component {
+//   state = {}
 
-  handleSidebarHide = () => this.setState({ sidebarOpened: false })
+//   handleSidebarHide = () => this.setState({ sidebarOpened: false })
 
-  handleToggle = () => this.setState({ sidebarOpened: true })
+//   handleToggle = () => this.setState({ sidebarOpened: true })
 
-  render() {
-    const { children } = this.props
-    const { sidebarOpened } = this.state
-    const {auth:{getCart}} = this.props
+//   render() {
+//     const { children } = this.props
+//     const { sidebarOpened } = this.state
+//     const {auth:{getCart}} = this.props
 
-    return (
-      <Responsive
-        as={Sidebar.Pushable}
-        getWidth={getWidth}
-        maxWidth={Responsive.onlyMobile.maxWidth}
-      >
-        <Sidebar
-          as={Menu}
-          animation='push'
-          inverted className="dpl-blue"
-          onHide={this.handleSidebarHide}
-          vertical
-          visible={sidebarOpened}
-          style={{ margin: 0, border: "none" }}
-        >
-          <Link to="/" ><Menu.Item>
-            <Image src={Beaker} size="tiny" className="filter-white"></Image>
-          </Menu.Item></Link>
-          <Menu.Item as='a'>More<Icon name="dropdown" /></Menu.Item>
-        </Sidebar>
+//     return (
+//       <Responsive
+//         as={Sidebar.Pushable}
+//         getWidth={getWidth}
+//         maxWidth={Responsive.onlyMobile.maxWidth}
+//       >
+//         <Sidebar
+//           as={Menu}
+//           animation='push'
+//           inverted className="dpl-blue"
+//           onHide={this.handleSidebarHide}
+//           vertical
+//           visible={sidebarOpened}
+//           style={{ margin: 0, border: "none" }}
+//         >
+//           <Link to="/" ><Menu.Item>
+//             <Image src={Beaker} size="tiny" className="filter-white"></Image>
+//           </Menu.Item></Link>
+//           <Menu.Item as='a'>More<Icon name="dropdown" /></Menu.Item>
+//         </Sidebar>
 
-        <Sidebar.Pusher dimmed={sidebarOpened} >
-          <Container fluid >
-            <Menu style={{ margin: 0, border: "none" }}
-              className="dpl-blue"
-              inverted
-              pointing
-              secondary
-              size='large'
-            >
-              <Menu.Item onClick={this.handleToggle}>
-                <Icon name='sidebar' />
-              </Menu.Item>
-              <Menu.Item position='right'>
-              <Link to="/cart">
-                  <Menu.Item>
-                    <Icon name="shopping cart" />Cart {getCart().length > 0 ?
-                      <div style={{ 
-                        color: '#4901DB', 
-                        backgroundColor: 'white', 
-                        borderRadius: '50%', 
-                        padding: '4px', 
-                        marginLeft: '6px',
-                        width:'21px',
-                        height:'21px',
-                        textAlign:'center' }}>
-                        {getCart().length}
-                      </div> : <></>}
-                  </Menu.Item>
-                </Link>
-              </Menu.Item>
-            </Menu>
-          </Container>
-          <HomepageHeading mobile />
-          {children}
-        </Sidebar.Pusher>
-      </Responsive>
-    )
-  }
-}
+//         <Sidebar.Pusher dimmed={sidebarOpened} >
+//           <Container fluid >
+//             <Menu style={{ margin: 0, border: "none" }}
+//               className="dpl-blue"
+//               inverted
+//               pointing
+//               secondary
+//               size='large'
+//             >
+//               <Menu.Item onClick={this.handleToggle}>
+//                 <Icon name='sidebar' />
+//               </Menu.Item>
+//               <Menu.Item position='right'>
+//               <Link to="/cart">
+//                   <Menu.Item>
+//                     <Icon name="shopping cart" />Cart {getCart().length > 0 ?
+//                       <div style={{ 
+//                         color: '#4901DB', 
+//                         backgroundColor: 'white', 
+//                         borderRadius: '50%', 
+//                         padding: '4px', 
+//                         marginLeft: '6px',
+//                         width:'21px',
+//                         height:'21px',
+//                         textAlign:'center' }}>
+//                         {getCart().length}
+//                       </div> : <></>}
+//                   </Menu.Item>
+//                 </Link>
+//               </Menu.Item>
+//             </Menu>
+//           </Container>
+//           <HomepageHeading mobile />
+//           {children}
+//         </Sidebar.Pusher>
+//       </Responsive>
+//     )
+//   }
+// }
 
-MobileContainer.propTypes = {
-  children: PropTypes.node,
-}
+// MobileContainer.propTypes = {
+//   children: PropTypes.node,
+// }
 
 const ResponsiveContainer = ({ children, auth}) => (
   <div>
     <DesktopContainer auth={auth}>{children}</DesktopContainer>
-    <MobileContainer auth={auth}>{children}</MobileContainer>
+    {/* <MobileContainer auth={auth}>{children}</MobileContainer> */}
   </div>
 )
 
