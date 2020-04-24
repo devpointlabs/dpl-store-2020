@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import Beaker from "../images/logo_black.svg";
 import Links from "./Links";
 import styled from "styled-components";
+import Cart from './Cart'
 
 const Layout = ({ children }) => {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   return (
     <Sidebar.Pushable as="div">
@@ -25,7 +26,7 @@ const Layout = ({ children }) => {
           <Icon name="close" inverted style={{position: "absolute",right: "10px",}} />
         </Hamburger>
         <Menu.Item as={Link} to="/">
-          <Image src={Beaker} size="tiny" className="filter-white"></Image>
+          <Image as='center' src={Beaker} size="tiny" className="filter-white"></Image>
         </Menu.Item>
         <Links />
         <Link to="/cart">

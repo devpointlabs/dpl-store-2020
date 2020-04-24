@@ -3,25 +3,24 @@ import Dropzone from "react-dropzone";
 import Axios from "axios";
 
 class MainImageForm extends Component {
-
   state = {
-    image: ''
-  }
+    image: ""
+  };
 
-  componentDidMount(){
-    if(this.props.product === undefined){
+  componentDidMount() {
+    if (this.props.product === undefined) {
       //do nothing
     } else {
       this.setState({
-        image : this.props.product.main_image
-      })
+        image: this.props.product.main_image
+      });
     }
   }
 
-  renderMainImage = () =>{
-    const {image} = this.state
+  renderMainImage = () => {
+    const { product } = this.props;
     return (
-      <div key={image} style={styles.mainImageArea}>
+      <div key={product} style={styles.mainImageArea}>
         <h2>Main Image</h2>
         <Dropzone onDrop={file => this.onDrop(file)} multiple={false}>
           {({ getRootProps, getInputProps, isDragActive }) => {
@@ -29,68 +28,88 @@ class MainImageForm extends Component {
               <div {...getRootProps()} style={styles.dropzone}>
                 <input {...getInputProps()} />
                 {isDragActive ? (
-                  <p>
-                    <img src={image} style={styles.image} alt="mainProduct" />
-                    drop files here!
-                  </p>
+                  <p style={styles.text}>drop files here!</p>
                 ) : (
-                  <p>
-                    <img src={image} style={styles.image} alt="mainProduct" />
-                    Click to add a picture or drag here
-                  </p>
+                  <p style={styles.text}>Click to add a picture or drag here</p>
                 )}
               </div>
             );
           }}
         </Dropzone>
+        <img src={product.main_image} style={styles.image} alt="mainProduct" />
       </div>
     );
-  }
-  onDrop = (Files) =>{
-    let data = new FormData() 
-    data.append("file", Files[0])
-    Axios.put(`/api/categories/${this.props.product.category_id}/products/${this.props.product.id}/main_image`, data)
-    .then(res =>{
-      console.log(res)
-      this.setState({
-        image: res.data.main_image
+  };
+  onDrop = Files => {
+    let data = new FormData();
+    data.append("file", Files[0]);
+    Axios.put(
+      `/api/categories/${this.props.product.category_id}/products/${this.props.product.id}/main_image`,
+      data
+    )
+      .then(res => {
+        console.log(res);
+        this.setState({
+          image: res.data.main_image
+        });
+        this.props.setMainImage(res.data.main_image);
+        this.renderMainImage();
       })
-      this.props.setMainImage(res.data.main_image)
-      this.renderMainImage()
-    })
-    .catch( e => console.log(e))
-  }
-
-
+      .catch(e => console.log(e));
+  };
 
   render() {
     return (
       <>
-      {this.props.product ? this.renderMainImage() : <h4>Please add images after creating product</h4>}
+        {this.props.product ? (
+          this.renderMainImage()
+        ) : (
+          <h4>Please add images after creating product</h4>
+        )}
       </>
     );
   }
 }
 
-export default MainImageForm
+export default MainImageForm;
 
 const styles = {
   dropzone: {
-    height: "150px",
-    width: "150px",
+    height: "100%",
+    width: "100%",
+    // overflow: "hidden",
     border: "1px dashed black",
-    borderRadius: "5px",
+    borderRadius: "10px",
+    alignItems: "center",
+    position: "absolute",
+    zIndex: "5",
+    textAlign: "center",
+    display: "inline-Block"
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+    maxWidth: "150px",
+    objectFit: "cover",
+    position: "absolute",
+    zIndex: "1",
+    borderRadius: "10px"
+  },
+  mainImageArea: {
+    width: "100%",
+    height: "100%",
+    maxHeight: "150px",
+    maxWidth: "150px",
+    // overflow: "hidden",
+    position: "absolute"
+  },
+  text: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "10px"
-  },
-  image: {
-    height: "150px",
-    width: "150px",
-    display: "flex"
-  }, mainImageArea: {
-    width: "100%",
-    height: "200px"
+    color:"blue",
+    webkitTextFillColor: "black",
+    webkitTextStrokeWidth: "1px",
+    webkitTextStrokeColor: "blue"
   }
 };
