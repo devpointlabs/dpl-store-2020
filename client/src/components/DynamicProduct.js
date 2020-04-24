@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Card, Grid, Button, Image, Container, Item } from "semantic-ui-react";
+import { Grid, Button, Image, Container } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import Arrow from "../images/LineArrowDown.svg";
+// import Arrow from "../images/LineArrowDown.svg";
 import { CartConsumer } from "../providers/CartProvider";
 import styled from 'styled-components';
 

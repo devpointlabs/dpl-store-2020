@@ -41,36 +41,39 @@ class SizeForm extends Component {
   sizeDropDownFormat = ({ size, index }) => {
 
     return (
-      
-      <Form.Group key={size}>
-        <Select
-          selection
-          placeholder="Select a Size"
-          value={size.size}
-          options={sizeOptions}
-          name="size"
-          onChange={(e, data) => this.sizeChange(data.name, data.value, index)}
-        />
-        <Form.Input
-          placeholder="how many in stock?"
-          value={size.quantity}
-          label="Quantity"
-          name="quantity"
-          onChange={e => this.sizeChange(e.target.name, e.target.value, index)}
-        />
-      </Form.Group>
+        <Form.Group>
+          <Select
+            selection
+            placeholder="Select a Size"
+            value={size.size}
+            options={sizeOptions}
+            name="size"
+            onChange={(e, data) =>
+              this.sizeChange(data.name, data.value, index)
+            }
+          />
+          <Form.Input
+            placeholder="how many in stock?"
+            value={size.quantity}
+            label="Quantity"
+            name="quantity"
+            onChange={e =>
+              this.sizeChange(e.target.name, e.target.value, index)
+            }
+          />
+        </Form.Group>
     );
   };
   renderSizes = () =>
     this.state.sizes.map((size, index) => (
-      <this.sizeDropDownFormat size={size} index={index} />
+      <this.sizeDropDownFormat size={size} index={index} key={Math.random}/>
     ));
 
   render() {
 
     return (
       <>
-        <Form.Button as="div" onClick={this.addSize} style={styles.button}>Add New Size</Form.Button>
+        <Form.Button onClick={this.addSize} style={styles.button}>Add New Size</Form.Button>
         <br/>
         {this.renderSizes()}
       </>
@@ -84,7 +87,8 @@ const styles = {
     backgroundColor:'lightgrey',
     width:'150px',
     padding:'2%',
-    cursor:'pointer'
+    cursor:'pointer',
+    borderRadius:"5px"
   }
 }
 export default SizeForm

@@ -47,7 +47,7 @@ const Footer = () => (
       <div className="dpl-blue" align="right" style={{ padding: '.5%', color: 'white' }}>
         <p style={window.innerWidth < 900 ? {fontSize:'2vw'}: {fontSize:'1vw'}}>
           <Image align="left" size={window.innerWidth < 900 ? 'tiny' : 'small'} src={Logo} className="filter-white"/>
-          <Icon name="copyright outline" fitted inverted size={window.innerWidth < 900 ? '14px' : '16px'} /> 2020 DevPoint Labs <Link to='/terms' style={{color: "white"}}>Terms</Link> <Link to='/policy' style={{color: "white"}}>Policy</Link>
+          <Icon name="copyright outline" fitted inverted size={window.innerWidth < 900 ? 'tiny' : 'small'} /> 2020 DevPoint Labs <Link to='/terms' style={{color: "white"}}>Terms</Link> <Link to='/policy' style={{color: "white"}}>Policy</Link>
           </p>
       </div>
     </div>

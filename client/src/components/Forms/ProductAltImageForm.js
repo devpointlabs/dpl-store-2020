@@ -103,8 +103,8 @@ class AltImageForm extends Component {
   renderAltImages = () => {
     return this.state.images.map(image => {
       return (
-        <Grid.Column width={4}>
-          <div key={image.id} style={styles.altImageArea}>
+        <Grid.Column width={4} key={image}>
+          <div style={styles.altImageArea}>
             <Button
               as="div"
               style={styles.deleteButton}
@@ -174,9 +174,9 @@ const styles = {
   },
   text: {
     color: "light-grey",
-    webkitTextFillColor: "white",
-    webkitTextStrokeWidth: "1px",
-    webkitTextStrokeColor: "black"
+    WebkitTextFillColor: "white",
+    WebkitTextStrokeWidth: "1px",
+    WebkitTextStrokeColor: "black"
   },
   deleteButton: {
     height: "25px",

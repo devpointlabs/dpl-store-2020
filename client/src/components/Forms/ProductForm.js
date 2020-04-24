@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Modal, Grid } from "semantic-ui-react";
+import { Form, Modal } from "semantic-ui-react";
 import SizeForm from "./ProductSizeForm";
 import axios from "axios";
 import MainImageForm from "./ProductMainImageForm";
@@ -125,7 +125,7 @@ class ProductForm extends Component {
     } = this.state;
     return (
       <Modal.Content>
-        <Form onSubmit={this.handleSubmit}>
+        <Form>
           <Form.Group
             width="equal"
             style={{ display: "flex", flexDirection: "column" }}
@@ -184,7 +184,7 @@ class ProductForm extends Component {
             </div>
           </div>
 
-          <Form.Button type="submit" style={styles.submitBtn}>
+          <Form.Button type="submit" style={styles.submitBtn} onClick={this.handleSubmit}>
             Submit
           </Form.Button>
           <Form.Button onClick={this.props.toggleForm} style={styles.cancelBtn}>

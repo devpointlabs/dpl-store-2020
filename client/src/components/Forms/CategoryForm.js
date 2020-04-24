@@ -220,6 +220,7 @@ class CategoryForm extends Component {
 
   submitNew = async () => {
     const res = await axios.post(`/api/categories`, { name: this.state.name });
+    console.log(res)
     this.handleClose();
   };
   handleSubmit = e => {

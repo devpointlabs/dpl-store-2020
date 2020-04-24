@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Image, Card } from "semantic-ui-react";
+import { Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import BlueHeader from "../images/BlueHeader2.svg";
 import FunctionalSearch from "./SharedComponents/FunctionalSearch";
 import FeaturedProducts from "./FeaturedProducts";
 import RoundImage from './SharedComponents/RoundImage';
-import axios from "axios";
 import CategoriesLinks from "./CategoriesLinks";
 import styled from 'styled-components'
 
