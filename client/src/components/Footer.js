@@ -18,17 +18,21 @@ const Footer = () => (
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', marginLeft: '1%', marginRight: '4%' }}>
               <Icon name="mail" style={{ fontSize: '16px' }} />
             </div>
-            <ContactText>contact@devpointlabs.com</ContactText>
+            {/* <a href="tel: 8014487420">801-448-7420</a>
+            mailto: emailaddress */}
+            <ContactText><a href="mailto: emailaddress">contact@devpointlabs.com</a></ContactText>
+            
           </StyledContact>
           <StyledContact >
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', marginRight: '4%' }}>
               <Image src={Pin} size="mini" inline style={{ height: "20px", width: "20px" }} />
             </div>
             <div >
-              <ContactText>
+              <ContactText><a href="https://www.google.com/maps/place/DevPoint+Labs/@40.760986,-111.8850667,17z/data=!3m1!4b1!4m5!3m4!1s0x8752f513a5f00001:0x7bdd5edd297ece1f!8m2!3d40.760986!4d-111.882878">
                 <p style={styles.text}>370 South 300 East</p>
                 <p style={styles.text}>Salt Lake City, Utah</p>
                 <p style={styles.text}>84111</p>
+                </a>
               </ContactText>
             </div>
           </StyledContact>
@@ -36,7 +40,7 @@ const Footer = () => (
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', marginLeft: '1%', marginRight: '4%' }}>
               <Icon name="phone" flipped='horizontally' style={{ fontSize: '16px' }} />
             </div>
-            <ContactText>801-448-7420</ContactText>
+            <ContactText ><a href="tel: 8014487420">801-448-7420</a></ContactText>
           </StyledContact>
         </ContactHolder>
       </StyledFooter>
